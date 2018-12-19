@@ -1,0 +1,100 @@
+29.03.2015 9:01:45 - 3 - Логин ОК
+29.03.2015 9:01:42 - nnn - LoadMAPI32 - ok
+29.03.2015 9:01:42 - nnn - LoadMAPI32
+29.03.2015 9:01:42 - nnn - Mapi32Dll LoadLibrary OK
+29.03.2015 9:01:42 - nnn - Mapi32Dll = C:\PROGRA~2\MICROS~2\Office12\OLMAPI32.DLL
+29.03.2015 9:01:10 -  - Произошла ошибка при соединении с сервером. 
+Ошибка при входе в базу *** Ошибка соединения с базой ConnectionString="Provider=SQLOLEDB.1;Password="1";Persist Security Info=True;User ID=sa;Initial Catalog=WDoc;Data Source=tsb26\SQLExpress;Use Procedure for Prepare=1;Auto Translate=True;Application Name=rdmWebDoc*4.0;Packet Size=4096;" 
+path= "C:\prj\webdoc\ProgRam\AppServer\Key.ack"
+[DBNETLIB][ConnectionOpen (Connect()).]SQL Server не существует, или доступ запрещен
+ComputerName= 127.0.0.1
+servername= svcWebDoc.rdmWebDoc
+host=127.0.0.1
+Программа будет закрыта.
+29.03.2015 9:00:43 - nnn - LoadMAPI32 - ok
+29.03.2015 9:00:43 - nnn - LoadMAPI32
+29.03.2015 9:00:43 - nnn - Mapi32Dll LoadLibrary OK
+29.03.2015 9:00:43 - nnn - Mapi32Dll = C:\PROGRA~2\MICROS~2\Office12\OLMAPI32.DLL
+05.03.2015 13:07:39 - nnn - LoadMAPI32 - ok
+05.03.2015 13:07:39 - nnn - LoadMAPI32
+05.03.2015 13:07:39 - nnn - Mapi32Dll LoadLibrary OK
+05.03.2015 13:07:38 - nnn - Mapi32Dll = C:\PROGRA~2\MICROS~2\Office12\OLMAPI32.DLL
+30.01.2014 15:53:50 - 3 - MF FormShow
+30.01.2014 15:53:50 - 3 - MF LoadMAPI32 - ok
+30.01.2014 15:53:50 - 3 - MF LoadMAPI32
+30.01.2014 15:53:50 - 3 - Логин ОК
+30.01.2014 15:53:49 - nnn - LoadMAPI32 - ok
+30.01.2014 15:53:49 - nnn - LoadMAPI32
+30.01.2014 15:53:49 - nnn - Mapi32Dll LoadLibrary OK
+30.01.2014 15:53:49 - nnn - Mapi32Dll = C:\PROGRA~2\MICROS~2\Office12\OLMAPI32.DLL
+30.01.2014 15:53:12 - 3 - MF FormShow
+30.01.2014 15:53:12 - 3 - MF LoadMAPI32 - ok
+30.01.2014 15:53:12 - 3 - MF LoadMAPI32
+30.01.2014 15:53:12 - 3 - Логин ОК
+30.01.2014 15:53:09 - nnn - LoadMAPI32 - ok
+30.01.2014 15:53:09 - nnn - LoadMAPI32
+30.01.2014 15:53:09 - nnn - Mapi32Dll LoadLibrary OK
+30.01.2014 15:53:09 - nnn - Mapi32Dll = C:\PROGRA~2\MICROS~2\Office12\OLMAPI32.DLL
+30.01.2014 13:46:34 - 3 - MF FormShow
+30.01.2014 13:46:34 - 3 - MF LoadMAPI32 - ok
+30.01.2014 13:46:34 - 3 - MF LoadMAPI32
+30.01.2014 13:46:34 - 3 - Логин ОК
+30.01.2014 13:46:31 - nnn - LoadMAPI32 - ok
+30.01.2014 13:46:31 - nnn - LoadMAPI32
+30.01.2014 13:46:31 - nnn - Mapi32Dll LoadLibrary OK
+30.01.2014 13:46:31 - nnn - Mapi32Dll = C:\PROGRA~2\MICROS~2\Office12\OLMAPI32.DLL
+30.01.2014 13:41:42 - 3 - MF FormShow
+30.01.2014 13:41:42 - 3 - MF GenerateSkinsList - ok
+30.01.2014 13:41:42 - 3 - MF GenerateSkinsList
+30.01.2014 13:41:42 - 3 - MF LoadMAPI32 - ok
+30.01.2014 13:41:42 - 3 - MF LoadMAPI32
+30.01.2014 13:41:42 - 3 - Логин ОК
+30.01.2014 13:41:41 - nnn - LoadMAPI32 - ok
+30.01.2014 13:41:41 - nnn - LoadMAPI32
+30.01.2014 13:41:41 - nnn - Mapi32Dll LoadLibrary OK
+30.01.2014 13:41:41 - nnn - Mapi32Dll = C:\PROGRA~2\MICROS~2\Office12\OLMAPI32.DLL
+30.01.2014 13:37:18 - 3 - MF FormShow
+30.01.2014 13:37:18 - 3 - MF GenerateSkinsList - ok
+30.01.2014 13:37:18 - 3 - MF GenerateSkinsList
+30.01.2014 13:37:18 - 3 - MF MAPIInitialize - ok
+30.01.2014 13:37:18 - 3 - MF MAPIInitialize
+30.01.2014 13:37:18 - 3 - MF LoadMAPI32 - ok
+30.01.2014 13:37:18 - 3 - MF LoadMAPI32
+30.01.2014 13:37:18 - 3 - Логин ОК
+30.01.2014 13:37:16 - nnn - LoadMAPI32 - ok
+30.01.2014 13:37:16 - nnn - LoadMAPI32
+30.01.2014 13:37:16 - nnn - Mapi32Dll LoadLibrary OK
+30.01.2014 13:37:16 - nnn - Mapi32Dll = C:\PROGRA~2\MICROS~2\Office12\OLMAPI32.DLL
+30.01.2014 13:33:01 - 3 - MF FormShow
+30.01.2014 13:32:59 - 3 - MF MAPIInitialize - ok
+30.01.2014 13:32:59 - 3 - MF MAPIInitialize
+30.01.2014 13:32:59 - 3 - MF LoadMAPI32 - ok
+30.01.2014 13:32:59 - 3 - MF LoadMAPI32
+30.01.2014 13:32:59 - 3 - Логин ОК
+30.01.2014 13:32:58 - nnn - LoadMAPI32 - ok
+30.01.2014 13:32:58 - nnn - LoadMAPI32
+30.01.2014 13:32:58 - nnn - Mapi32Dll LoadLibrary OK
+30.01.2014 13:32:58 - nnn - Mapi32Dll = C:\PROGRA~2\MICROS~2\Office12\OLMAPI32.DLL
+30.01.2014 13:32:13 - 3 - MF MAPIInitialize - ok
+30.01.2014 13:32:12 - 3 - MF MAPIInitialize
+30.01.2014 13:32:12 - 3 - MF LoadMAPI32 - ok
+30.01.2014 13:32:12 - 3 - MF LoadMAPI32
+30.01.2014 13:32:12 - 3 - Логин ОК
+30.01.2014 13:32:10 - nnn - LoadMAPI32 - ok
+30.01.2014 13:32:10 - nnn - LoadMAPI32
+30.01.2014 13:32:10 - nnn - Mapi32Dll LoadLibrary OK
+30.01.2014 13:32:09 - nnn - Mapi32Dll = C:\PROGRA~2\MICROS~2\Office12\OLMAPI32.DLL
+30.01.2014 13:23:38 - 3 - MF LoadMAPI32 - ok
+30.01.2014 13:23:38 - 3 - MF LoadMAPI32
+30.01.2014 13:23:38 - 3 - Логин ОК
+30.01.2014 13:23:37 - nnn - LoadMAPI32 - ok
+30.01.2014 13:23:37 - nnn - LoadMAPI32
+30.01.2014 13:23:37 - nnn - Mapi32Dll LoadLibrary OK
+30.01.2014 13:23:37 - nnn - Mapi32Dll = C:\PROGRA~2\MICROS~2\Office12\OLMAPI32.DLL
+30.01.2014 13:19:05 - 3 - LoadMAPI32 - ok
+30.01.2014 13:19:05 - 3 - LoadMAPI32
+30.01.2014 13:19:05 - 3 - Логин ОК
+30.01.2014 13:19:00 - nnn - LoadMAPI32 - ok
+30.01.2014 13:19:00 - nnn - LoadMAPI32
+30.01.2014 13:19:00 - nnn - Mapi32Dll LoadLibrary OK
+30.01.2014 13:19:00 - nnn - Mapi32Dll = C:\PROGRA~2\MICROS~2\Office12\OLMAPI32.DLL

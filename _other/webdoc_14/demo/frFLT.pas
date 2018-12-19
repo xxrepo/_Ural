@@ -1,0 +1,77 @@
+unit frFLT;
+
+interface
+
+uses 
+  Windows, Messages, SysUtils, Classes, Graphics, Controls, Forms, Dialogs,
+  StdCtrls, extctrls, Db, ADODB;
+
+type
+  TfFlt = class(TFrame)
+    Label1: TLabel;
+    cbVal: TComboBox;
+    Button1: TButton;
+    procedure Button1Click(Sender: TObject);
+  private
+    FSL : TStrings;
+  public
+    { Public declarations }
+  end;
+function GetFrame(aLabel : String; AList : TPanel; SL : TStrings; ASP : TADOStoredProc) :  TfFlt;
+
+implementation
+
+{$R *.DFM}
+
+function GetFrame(aLabel : String; AList : TPanel; SL : TStrings; ASP : TADOStoredProc) :  TfFlt;
+var i : integer;
+begin
+  Result := nil;
+  for i := 0 to AList.ControlCount - 1 do
+  begin
+    if (AList.Controls[i] is TfFlt) then
+      if TfFlt(AList.Controls[i]).Label1.Caption = aLabel then
+      begin
+        Result := TfFlt(AList.Controls[i]);
+        Break;
+      end;
+  end;
+  if not Assigned(Result) then
+  begin
+    Result := TfFlt.Create(nil);
+    Result.Label1.Caption := aLabel;
+    Result.Parent := AList;
+    Result.FSL := SL;
+
+
+  end;
+  Result.Visible := true;
+  Result.Top := 1000;
+  Result.Align := alTop;
+
+  Result.cbVal.Items.Clear;
+  
+  with ASP do
+  begin
+    Open;
+    while not Eof do
+    begin
+      Result.cbVal.Items.Add(ASP.fieldByName('Val').AsString);
+      Next;
+    end;
+  end;
+
+
+end;
+
+procedure TfFlt.Button1Click(Sender: TObject);
+begin
+  FSL.Add(Label1.Caption);
+  try
+  Hide;
+
+  except
+  end;
+end;
+
+end.

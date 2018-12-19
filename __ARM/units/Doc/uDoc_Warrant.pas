@@ -1,0 +1,970 @@
+unit uDoc_Warrant;
+
+interface
+
+uses
+  Windows, Messages, SysUtils, Classes, Graphics, Controls, Forms, Dialogs,
+  StdCtrls, ExtCtrls, Db, DBClient, Mask, DBCtrls, ToolEdit, RXDBCtrl,
+  RxDBComb, CurrEdit, ComObj, foMyFunc, RXCtrls, Grids, DBGridEh, ComCtrls,
+  ToolWin, ActnList, ImgList, Menus, Buttons, GridsEh;
+
+type
+  TWarrant = class(TForm)
+    Panel2: TPanel;
+    btnCancel: TButton;
+    btnOk: TButton;
+    cdsDoc: TClientDataSet;
+    DataSource1: TDataSource;
+    GroupBox1: TGroupBox;
+    Panel1: TPanel;
+    Label2: TLabel;
+    DBDateEdit1: TDBDateEdit;
+    Label1: TLabel;
+    DBEdit1: TDBEdit;
+    Label11: TLabel;
+    Label12: TLabel;
+    Label3: TLabel;
+    Label13: TLabel;
+    Label14: TLabel;
+    Label15: TLabel;
+    Label16: TLabel;
+    Label20: TLabel;
+    Label21: TLabel;
+    GroupBox2: TGroupBox;
+    dsOperWare: TDataSource;
+    DBGridEh1: TDBGridEh;
+    Label4: TLabel;
+    Label5: TLabel;
+    Label6: TLabel;
+    Label7: TLabel;
+    Bevel1: TBevel;
+    Bevel2: TBevel;
+    Bevel3: TBevel;
+    Panel3: TPanel;
+    Label18: TLabel;
+    edcustomer: TDBEdit;
+    Label8: TLabel;
+    edDateTo: TDBDateEdit;
+    Label9: TLabel;
+    edFIO: TDBEdit;
+    edPost: TDBEdit;
+    Label10: TLabel;
+    Label17: TLabel;
+    edPspSer: TDBEdit;
+    edPspNum: TDBEdit;
+    Label19: TLabel;
+    Label22: TLabel;
+    edPspDate: TDBDateEdit;
+    Label23: TLabel;
+    edPspOwner: TDBEdit;
+    ilImage: TImageList;
+    ActionList1: TActionList;
+    aAddWare: TAction;
+    aDelWare: TAction;
+    aCalcAmount: TAction;
+    aClearWare: TAction;
+    ToolBar3: TToolBar;
+    ToolButton11: TToolButton;
+    ToolButton12: TToolButton;
+    ToolButton13: TToolButton;
+    ToolButton1: TToolButton;
+    ToolButton2: TToolButton;
+    PopupMenu1: TPopupMenu;
+    miOpen: TMenuItem;
+    miPrint: TMenuItem;
+    RxSpeedButton1: TRxSpeedButton;
+    cdsDocWare: TClientDataSet;
+    cdsDocWareSummOper2: TFloatField;
+    cdsDocWareNumb: TIntegerField;
+    cdsDocWarewoVAT: TFloatField;
+    cdsDocWareSS: TAggregateField;
+    cdsDocWareSSwoVAT: TAggregateField;
+    cdsDocWareid_WarrantWare: TAutoIncField;
+    cdsDocWareid_Warrant: TIntegerField;
+    cdsDocWareWareName: TStringField;
+    cdsDocWareMesName: TStringField;
+    cdsDocWareAmount: TFloatField;
+    cdsDocWareVATVal: TFloatField;
+    cdsDocWareAmountAdv: TStringField;
+    cdsDocid_Warrant: TAutoIncField;
+    cdsDocid_Oper: TIntegerField;
+    cdsDocDoc_Num: TStringField;
+    cdsDocDoc_Date: TDateTimeField;
+    cdsDocDoc_DateCreate: TDateTimeField;
+    cdsDocid_UserCreator: TIntegerField;
+    cdsDocDateTo: TDateTimeField;
+    cdsDocOrgName: TStringField;
+    cdsDocAddress: TStringField;
+    cdsDocINN: TBCDField;
+    cdsDocOrgName2: TStringField;
+    cdsDocAddress2: TStringField;
+    cdsDocINN2: TBCDField;
+    cdsDocOKPO: TStringField;
+    cdsDocPerson: TStringField;
+    cdsDocPost: TStringField;
+    cdsDocGarbNum: TStringField;
+    cdsDocGarbDate: TDateTimeField;
+    cdsDocAcc: TStringField;
+    cdsDocBank: TStringField;
+    cdsDocBIK: TBCDField;
+    cdsDocCorAcc: TStringField;
+    cdsDoccustomer: TStringField;
+    cdsDocFIO: TStringField;
+    cdsDocPspSer: TStringField;
+    cdsDocPspNum: TStringField;
+    cdsDocPspOwner: TStringField;
+    cdsDocPspDate: TDateTimeField;
+    cdsDocChif: TStringField;
+    cdsDocBuh: TStringField;
+    cdsDocid_business: TIntegerField;
+    cdsDocDisabled: TBooleanField;
+    cdsDocid_Doc_Org: TIntegerField;
+    BitBtn3: TBitBtn;
+    cbOrgName: TDBEdit;
+    cbINN: TDBEdit;
+    cbOKPO: TDBEdit;
+    cbAddress: TDBEdit;
+    cbOrgName2: TDBEdit;
+    cbAddress2: TDBEdit;
+    DBEdit4: TDBEdit;
+    cbBank: TDBEdit;
+    BitBtn1: TBitBtn;
+    cbBIK: TDBEdit;
+    cbAcc1: TDBEdit;
+    cbAcc2: TDBEdit;
+    cbChif: TDBEdit;
+    cbBuh: TDBEdit;
+    cdsDocVAT: TBCDField;
+    cdsDocWareSummWare: TBCDField;
+    cdsDocWareVAT: TBCDField;
+    procedure cdsDocCalcFields(DataSet: TDataSet);
+    procedure FormClose(Sender: TObject; var Action: TCloseAction);
+    procedure FormKeyPress(Sender: TObject; var Key: Char);
+    procedure btnCancelClick(Sender: TObject);
+    procedure btnOkClick(Sender: TObject);
+    procedure cdsDocWareCalcFields(DataSet: TDataSet);
+    procedure FormDestroy(Sender: TObject);
+    procedure FormShow(Sender: TObject);
+    procedure RxSpeedButton1Click(Sender: TObject);
+    procedure DBGridEh1ColEnter(Sender: TObject);
+    procedure dsOperWareDataChange(Sender: TObject; Field: TField);
+    procedure aAddWareExecute(Sender: TObject);
+    procedure aDelWareExecute(Sender: TObject);
+    procedure aClearWareExecute(Sender: TObject);
+    procedure aCalcAmountExecute(Sender: TObject);
+    procedure miOpenClick(Sender: TObject);
+    procedure miPrintClick(Sender: TObject);
+    procedure DBGridEh1KeyPress(Sender: TObject; var Key: Char);
+    procedure BitBtn3Click(Sender: TObject);
+    procedure BitBtn1Click(Sender: TObject);
+    procedure cdsDocAddressGetText(Sender: TField; var Text: String;
+      DisplayText: Boolean);
+    procedure cdsDocINNGetText(Sender: TField; var Text: String;
+      DisplayText: Boolean);
+  private
+    FHandle : HWnd;
+    FDocParamz : TDocParamz;
+    function CheckData: boolean;
+    function ConfirmChanges: boolean;
+    procedure MakeExport(APrint: boolean);
+    function GetVATCol: TColumnEh;
+    procedure Doc_OrgBankGetDef(id_Doc_Org: integer);
+  public
+    FPrntW : HWnd;
+    constructor Create(AOwner : TComponent); override;
+    destructor Destroy; override;
+    procedure CreateParams(var Params: TCreateParams); override;
+    function SaveProp: boolean;
+    procedure initialize(ADocParamz : TDocParamz;
+                   AcdsOper : TClientDataSet;
+                   AcdsWare : TClientDataSet);
+
+  end;
+
+var
+  Warrant: TWarrant;
+
+  procedure ShowWarrant(AHandle : HWnd; ADocParamz : TDocParamz;
+                   AcdsOper : TClientDataSet = nil;
+                   AcdsWare : TClientDataSet = nil);
+implementation
+
+uses uDM, foMyFuncEh, {$IFNDEF LC}uUnivSelector,{$ENDIF} uInputBoxDigit, NumTools,
+  uSelectorDocOrg, uSelectorDocOrgBank;
+
+procedure ShowWarrant(AHandle : HWnd; ADocParamz : TDocParamz;
+                   AcdsOper : TClientDataSet;
+                   AcdsWare : TClientDataSet);
+var F : TWarrant;
+begin
+  DM.Rights_GetUserRights(26, Null);
+  F := TWarrant.Create(nil);
+  try
+    F.FHandle := AHandle;
+    F.initialize(ADocParamz, AcdsOper, AcdsWare);
+    F.ModalResult := mrNone;
+{$IFNDEF LC}
+    F.Show;
+{$ELSE}
+    F.MakeExport(false);
+    F.Free;
+{$ENDIF}
+  except
+    on E : Exception do
+    begin
+      F.Free;
+      raise Exception.Create(E.Message);
+    end;
+  end;
+end;
+{$R *.DFM}
+
+procedure TWarrant.cdsDocCalcFields(DataSet: TDataSet);
+begin
+  with DataSet do
+    FieldByName('WoVAT').AsFloat := FieldByName('Summ').AsFloat * (100 - FieldByName('VAT').AsFloat)/100;
+end;
+
+constructor TWarrant.Create(AOwner: TComponent);
+begin
+  inherited;
+  SetWindowLong(Handle, GWL_HWNDPARENT, 0);
+  LoadEhGridSettingsFromRegistry(DBGridEh1, SRegPath + '\' + ClassName);
+end;
+
+procedure TWarrant.CreateParams(var Params: TCreateParams);
+begin
+  inherited;
+  Params.ExStyle:=(Params.ExStyle or WS_EX_APPWINDOW);
+
+end;
+
+procedure TWarrant.initialize(ADocParamz : TDocParamz;
+                   AcdsOper : TClientDataSet;
+                   AcdsWare : TClientDataSet);
+var Val : Variant;
+    NeedOpen, VATIn : boolean;
+    id_Doc_Org, OrgName, INN,
+  KPP, Chif, Buh, OKPO, OKPD, Address: OleVariant;
+  xDate: TDateTime; xNum: String;
+begin
+  FPrntW := GetControlFormHHH(AcdsOper);
+  btnOk.Enabled := (ADocParamz.ID_Oper > 0) or (ADocParamz.id_Doc > 0);
+  FDocParamz := ADocParamz;
+  NeedOpen := AcdsOper = nil;
+  if AcdsOper = nil then
+  begin
+    AcdsOper := DM.cdsOperFin;
+  end;
+  if AcdsWare = nil then
+    AcdsWare := DM.cdsOperWare;
+
+  with cdsDoc do
+  begin
+    Close;
+    Params.ParamByName('@id_Warrant').AsInteger := FDocParamz.id_Doc;
+    Open;
+  end;
+  with cdsDocWare do
+  begin
+    Close;
+    Params.ParamByName('@id_Warrant').AsInteger := FDocParamz.id_Doc;
+    Open;
+  end;
+
+
+  if FDocParamz.id_Doc = -1 then
+  begin
+    cdsDoc.Edit;
+    cdsDocid_UserCreator.AsInteger := DM.IDUser;
+    cdsDocid_Oper.AsInteger := FDocParamz.id_Oper;
+    cdsDocDoc_Date.AsDateTime := date;
+    with AcdsOper do
+    begin
+      if NeedOpen then
+      begin
+        Close;
+        Params.ParamByName('@id_Oper').AsInteger := FDocParamz.id_Oper;
+        Params.ParamByName('@is_Mirr').AsBoolean := FDocParamz.is_Mirr;
+        Open;
+      end;
+      try
+        cdsDocid_business.Value := FieldByName('id_business').Value;
+        cdsDoccustomer.AsString := FieldByName('ReprName').AsString;
+      finally
+        if NeedOpen then Close;
+      end;
+      cdsDocDoc_Num.AsVariant := DM.rsCA.AppServer.GetDoc_Num2(6, cdsDocid_business.Value);
+    end;
+        if DM.GetDocNum(cdsDocid_Oper.AsInteger, cdsDocid_business.AsInteger, xDate, xNum) then
+        begin
+          cdsDocDoc_Num.AsString := xNum;
+          cdsDocDoc_Date.AsDateTime := xDate;
+        end;
+    cdsDoc.Post;
+
+    with AcdsWare do
+    begin
+      if NeedOpen then
+      begin
+        Close;
+        Params.ParamByName('@id_Oper').AsInteger := FDocParamz.id_Oper;
+        Open;
+      end;
+
+      DisableControls;
+      try
+        First;
+        while not Eof do
+        begin
+          cdsDocWare.Append;
+          cdsDocWareWareName.AsVariant := FieldByName('WareName').Value;
+       {   if FieldByName('SummSys').IsNull then
+            cdsDocWarePrice.Value := FieldByName('PriceOper').Value
+          else
+            cdsDocWarePrice.AsVariant := FieldByName('SummSys').Value;  }
+          cdsDocWareAmount.AsVariant := FieldByName('AmountOper').Value;
+          cdsDocWareMesName.AsVariant := DM.GetLeftText(FieldByName('MeasureName').Value);
+
+          cdsDocWare.Post;
+
+          Next;
+        end;
+      finally
+        if NeedOpen then Close else First;
+        EnableControls;
+      end;
+    end;
+  end
+  else
+  begin
+    with cdsDoc do
+    begin
+      if FieldByName('Doc_Num').IsNull then
+      begin
+        Edit;
+        FieldByName('Doc_Num').AsString := IntToStr(FDocParamz.id_Doc);
+        Post;
+      end;
+    end;
+  end;
+  if FDocParamz.Copy then
+    FDocParamz.id_Oper := -1;
+  if (FDocParamz.ID_Doc = -1) then
+  begin
+    Caption := 'Новая доверенность';
+  end
+  else
+  begin
+    Caption := 'Доверенность №' + cdsDocDoc_Num.AsString;
+  end;
+  if FDocParamz.ReadOnly then
+    Caption := Caption + ', только чтение';
+
+  if (FDocParamz.ID_Doc = -1) and not (FDocParamz.Copy) then
+    if DM.GetDefOrg(cdsDocid_business.AsInteger, id_Doc_Org, OrgName, INN,
+    KPP, Chif, Buh, OKPO, OKPD, Address) then
+  begin
+    cdsDoc.Edit;
+    cdsDocid_Doc_Org.AsVariant := id_Doc_Org;
+    cdsDocOrgName.AsVariant := OrgName;
+    cdsDocAddress.AsVariant := Address;
+    cdsDocINN.AsVariant := INN;
+    cdsDocOKPO.AsVariant := OKPO;
+    cdsDocChif.AsVariant := Chif;
+    cdsDocBuh.AsVariant := Buh;
+
+    cdsDocOrgName2.AsVariant := OrgName;
+    cdsDocAddress2.AsVariant := Address;
+    cdsDocINN2.AsVariant := INN;
+
+    cdsDoc.Post;
+    Doc_OrgBankGetDef(id_Doc_Org);
+  end;
+ // DM.ColumnGetData(GetVATCol, cdsDocid_Doc_Org.AsInteger, FDocParamz.ID_Doc);
+
+
+ { if VATIn then
+  begin
+    with cdsDocWare do
+    begin
+      DisableControls;
+      try
+        First;
+        while not Eof do
+        begin
+          Edit;
+          cdsDocWarePrice.AsVariant := cdsDocWarePrice.AsVariant * cdsDocWareAmount.AsVariant / (1 + cdsDocWareVAT.AsFloat/100);
+          if cdsDocWareAmount.AsFloat > 0 then
+            cdsDocWarePrice.AsVariant := cdsDocWarePrice.AsVariant/cdsDocWareAmount.AsFloat;
+          Post;
+          Next;
+        end;
+        First;
+      finally
+        EnableControls;
+      end;
+    end;
+  end   }
+end;
+
+function TWarrant.GetVATCol: TColumnEh;
+var i : integer;
+begin
+  Result := nil;
+  for i := 0 to DBGridEh1.Columns.Count - 1 do
+  begin
+    if DBGridEh1.Columns[i].Field = cdsDocWareVAT then
+    begin
+      Result := DBGridEh1.Columns[i];
+      Break;
+    end;
+  end;
+end;
+
+function TWarrant.SaveProp: boolean;
+var ID_Tmp : Integer;
+    id_Oper, Doc_Num, Doc_Date, GarbDate, PspDate,
+  DateTo, BIK, id_UserCreator, INN, Chif, Buh, PspSer,
+  PspNum, PspOwner, CorAcc, customer, FIO, GarbNum, Acc, Bank, OKPO,
+  Person, APost, OrgName, Address, OrgName2, Address2,
+  INN2: OleVariant;
+  id_Doc_Org : integer;
+    OldCursor : TCursor;
+begin
+  if FDocParamz.ReadOnly or ((cdsDoc.ChangeCount = 0) and  (cdsDocWare.ChangeCount = 0)) then Exit;
+  ID_Tmp := FDocParamz.ID_Doc;
+  OldCursor := Screen.Cursor;
+  Screen.Cursor := crSQLWait;
+  Result := false;
+  with cdsDoc do
+  begin
+    id_Oper := fieldByName('id_Oper').AsInteger;
+    Doc_Num := fieldByName('Doc_Num').Value;
+    Doc_Date := fieldByName('Doc_Date').Value;
+
+    GarbDate := fieldByName('GarbDate').Value;
+    PspDate := fieldByName('PspDate').Value;
+    DateTo := fieldByName('DateTo').Value;
+    BIK  := fieldByName('BIK').Value;
+    id_UserCreator := fieldByName('id_UserCreator').Value;
+    INN := fieldByName('INN').Value;
+    Chif := fieldByName('Chif').Value;
+    Buh := fieldByName('Buh').Value;
+    PspSer := fieldByName('PspSer').Value;
+    PspNum := fieldByName('PspNum').Value;
+    PspOwner := fieldByName('PspOwner').Value;
+    CorAcc := fieldByName('CorAcc').Value;
+    customer := fieldByName('customer').Value;
+    FIO := fieldByName('FIO').Value;
+    GarbNum := fieldByName('GarbNum').Value;
+    Acc := fieldByName('Acc').Value;
+    Bank := fieldByName('Bank').Value;
+    OKPO := fieldByName('OKPO').Value;
+    Person := fieldByName('Person').Value;
+    APost := fieldByName('Post').Value;
+    OrgName := fieldByName('OrgName').Value;
+    Address := fieldByName('Address').Value;
+    OrgName2 := fieldByName('OrgName2').Value;
+    Address2 := fieldByName('Address2').Value;
+    INN2 := fieldByName('INN2').Value;
+    id_Doc_Org := fieldByName('id_Doc_Org').AsInteger;
+  end;
+
+  BeginTruns(DM.rsCA);
+  try
+    ID_Tmp := DM.rsCA.AppServer.Doc_WarrantEdit(FDocParamz.ID_Doc, GarbDate, PspDate,
+  Doc_Date, DateTo, BIK, id_Oper, id_UserCreator, INN, Chif, Buh, PspSer,
+  PspNum, PspOwner, CorAcc, customer, FIO, GarbNum, Acc, Bank, OKPO,
+  Person, APost, Doc_Num, OrgName, Address, OrgName2, Address2,
+  INN2, id_Doc_Org);
+
+    if ID_Tmp = -1 then
+      raise Exception.Create('Ошибка при сохранении свойств');
+    if FDocParamz.ID_Doc = -1 then
+      FDocParamz.ID_Doc := ID_Tmp;
+
+    if not CDSApplyUpdates(cdsDocWare, 'id_Warrant', FDocParamz.ID_Doc, true) then
+      raise Exception.Create('Ошибка при сохранении перечня товаров');
+    CommitTrans(DM.rsCA);
+    Result := true;
+  except
+    on E : Exception do
+    begin
+      Screen.Cursor := OldCursor;
+      RollbackTrans(DM.rsCA);
+      FDocParamz.ID_Doc := ID_Tmp;
+      raise Exception.Create(E.Message);
+    end;
+  end;
+  Screen.Cursor := OldCursor;
+end;
+
+procedure TWarrant.FormClose(Sender: TObject; var Action: TCloseAction);
+begin
+  Action := caFree;
+  if ModalResult = mrOk then
+    if SaveProp then
+      SendMessage(FHandle, xxx_RefrMsg, FDocParamz.ID_Doc, 0);
+end;
+
+procedure TWarrant.FormKeyPress(Sender: TObject; var Key: Char);
+begin
+  if (Key = #13) and (cdsDoc.State = dsEdit) then cdsDoc.Post;
+end;
+
+destructor TWarrant.Destroy;
+begin
+  SaveEhGridSettingsToRegistry(DBGridEh1, SRegPath + '\' + ClassName);
+  inherited;
+  BringWindowToTop(FPrntW);
+end;
+
+
+procedure TWarrant.btnCancelClick(Sender: TObject);
+begin
+  Close;
+end;
+
+procedure TWarrant.btnOkClick(Sender: TObject);
+begin
+  if not ConfirmChanges then
+    ModalResult := mrNone
+  else
+  begin
+    ModalResult := mrOk;
+    Close;
+  end;
+end;
+
+function TWarrant.ConfirmChanges: boolean;
+var SL : TStringList;
+    CDS : TClientDataSet;
+begin
+  if cdsDocWare.State in [dsEdit, dsInsert] then cdsDocWare.Post;
+  Result := false;
+  if not CheckData then
+    Exit;
+  CDS := cdsDoc;
+  if CDS.State <> dsEdit then
+    CDS.Edit;
+  Result := true;
+  if (FDocParamz.ID_Doc <> -1) then
+  begin
+    SL := TStringList.Create;
+    try
+      if (CDS.ChangeCount > 0) then
+      begin
+        CompareField(CDS, 'Doc_Num', 'Номер документа', SL);
+        CompareField(CDS, 'Doc_Date', 'Дата составления', SL);
+
+        CompareField(CDS, 'OrgName1', 'Организация', SL);
+        CompareField(CDS, 'Summ1', 'Задолженность', SL);
+        CompareField(CDS, 'Doc1', 'Основание', SL);
+        CompareField(CDS, 'Post1', 'Должность', SL);
+
+        CompareField(CDS, 'OrgName2', 'Организация', SL);
+        CompareField(CDS, 'Summ2', 'Задолженность', SL);
+        CompareField(CDS, 'Doc2', 'Основание', SL);
+        CompareField(CDS, 'Post2', 'Должность', SL);
+
+        CompareField(CDS, 'Summ', 'Сумма зачета', SL);
+      end;
+
+      if SL.Count > 0 then
+        Result := MessageBox(Handle, PChar('Были изменены следующие данные:' + #13 + #10 + SL.Text ), 'Подтвердите изменения', MB_YESNO + MB_ICONQUESTION) = idYes;
+    finally
+      SL.Free;
+    end;
+  end;
+  CDS.Post;
+end;
+
+function TWarrant.CheckData: boolean;
+begin
+  Result := false;
+  with DM do
+  begin
+//    CheckEmptyControl(Handle, DBEdit1);
+    CheckEmptyControl(Handle, DBDateEdit1);
+
+    CheckEmptyControl(Handle, edDateTo);
+    CheckEmptyControl(Handle, edFIO);
+    CheckEmptyControl(Handle, edPost);
+    CheckEmptyControl(Handle, edcustomer);
+    CheckEmptyControl(Handle, edPspSer);
+    CheckEmptyControl(Handle, edPspNum);
+    CheckEmptyControl(Handle, edPspDate);
+    CheckEmptyControl(Handle, edPspOwner);
+    CheckEmptyControl(Handle, edPspNum);
+    CheckEmptyControl(Handle, edPspNum);
+    CheckEmptyControl(Handle, edPspNum);
+
+    CheckEmptyControl(Handle, cbOrgName);
+{    CheckEmptyControl(Handle, cbAddress);
+    CheckEmptyControl(Handle, cbINN);
+    CheckEmptyControl(Handle, cbOKPO);
+    CheckEmptyControl(Handle, cbOrgName2);
+    CheckEmptyControl(Handle, cbAddress2);
+    CheckEmptyControl(Handle, cbINN2);}
+
+    CheckEmptyControl(Handle, cbBIK);
+
+    CheckEmptyControl(Handle, cbBank);
+    CheckEmptyControl(Handle, cbAcc1);
+    CheckEmptyControl(Handle, cbAcc2);
+    CheckEmptyControl(Handle, edcustomer);
+
+    CheckEmptyControl(Handle, cbBuh);
+    CheckEmptyControl(Handle, cbChif);
+  end;
+  with cdsDocWare do
+    if IsEmpty then
+    begin
+      MessageBox(Handle, 'Не выбраны товары', 'Введены не все данные', MB_OK + MB_ICONERROR);
+      Windows.SetFocus(DBGridEh1.Handle);
+      Exit;
+    end;
+  Result := true;
+end;
+
+procedure TWarrant.cdsDocWareCalcFields(DataSet: TDataSet);
+var SummOper2 : Extended;
+  SSS : Extended;
+  S : String;
+begin
+  DataSet.FieldByName('Numb').AsInteger := DataSet.RecNo;
+end;
+
+procedure TWarrant.FormDestroy(Sender: TObject);
+begin
+  SaveFormSettingsToRegistry(Self, SRegPath + '\' + ClassName);
+end;
+
+procedure TWarrant.FormShow(Sender: TObject);
+begin
+  LoadFormSettingsToRegistry(Self, SRegPath + '\' + ClassName);
+end;
+
+procedure TWarrant.RxSpeedButton1Click(Sender: TObject);
+var WordApp, ActiveDocument : Variant;
+begin
+  try
+    WordApp := CreateOleObject('Word.Application');
+    WordApp.visible := true;
+    ActiveDocument := WordApp.Documents.Add(ExtractFilePath(Application.EXEName) + 'test1.Doc');
+   // WordApp.ScreenUpdating:= false;
+    try
+      DM.EditBookmark(ActiveDocument, 'qqq', '789');
+
+    finally
+      WordApp.Selection.Start := 0;
+      WordApp.Selection.End := 0;
+      WordApp.visible := true;
+      WordApp.ScreenUpdating:= true;
+    end;
+  except
+    WordApp := Null;
+  end;
+end;
+
+procedure TWarrant.DBGridEh1ColEnter(Sender: TObject);
+var ACol : TColumnEh;
+begin
+  ACol := DBGridEh1.Columns[DBGridEh1.col];
+  aCalcAmount.Enabled := not DBGridEh1.DataSource.DataSet.IsEmpty and
+                         (ACol.Field is TNumericField)
+                         and not ACol.ReadOnly;
+end;
+
+procedure TWarrant.dsOperWareDataChange(Sender: TObject; Field: TField);
+begin
+  with (Sender as TDataSource).DataSet do
+  begin
+    aClearWare.Enabled := not IsEmpty;
+    aDelWare.Enabled := not IsEmpty;
+  //  aCalcAmount.Enabled := not IsEmpty;
+  end;
+end;
+
+procedure TWarrant.aAddWareExecute(Sender: TObject);
+var ASelectedObj : TSelectedObj;
+    AID, AName : OleVariant;
+    EObjTypes : TEObjTypes;
+begin
+{$IFNDEF LC}
+  Screen.Cursor := crSQLWait;
+  EObjTypes := [eotGoods];
+  with cdsDocWare do
+  begin
+    if SelectObjUnBsn(Owner, cdsDocid_business.Value, ASelectedObj, 0, EObjTypes, true) then
+    begin
+      Append;
+      FieldByName('WareName').Value := ASelectedObj.Name;
+      if DM.rsCA.AppServer.PL_WareMeasureGet(ASelectedObj.ID,
+                                             AID, AName) = 1 then
+      begin
+        FieldByName('MesName').Value := AName;
+      end;
+      DBGridEh1.col := 2;
+      windows.SetFocus(DBGridEh1.Handle);
+      Post;
+    end;
+  end;
+{$ENDIF}
+end;
+
+procedure TWarrant.aDelWareExecute(Sender: TObject);
+var i : integer;
+    S : String;
+begin
+  if DBGridEh1.SelectedRows.Count > 0 then
+    S := 'Удалить ' + IntToStr(DBGridEh1.SelectedRows.Count) + ' товаров?'
+  else
+    S := 'Удалить товар "' + DBGridEh1.DataSource.DataSet.FieldByName('WareName').AsString+ '"?';
+  if MessageBox(Handle, PChar(S), 'Подтвердите удаление', MB_YESNO + MB_ICONQUESTION) = idYes then
+  begin
+    try
+      if DBGridEh1.SelectedRows.Count > 0 then
+      begin
+        for i := 0 to DBGridEh1.SelectedRows.Count - 1 do
+        begin
+          DBGridEh1.DataSource.DataSet.GotoBookmark(pointer(DBGridEh1.SelectedRows.Items[i]));
+          DBGridEh1.DataSource.DataSet.Delete;
+        end;
+      end
+      else
+        DBGridEh1.DataSource.DataSet.Delete;
+    finally
+
+    end;
+
+
+  end;
+end;
+
+procedure TWarrant.aClearWareExecute(Sender: TObject);
+begin
+  if MessageBox(Handle, PChar('Очистить перечень товаров?'), 'Подтвердите очистку', MB_ICONWARNING + MB_YESNO + MB_DEFBUTTON2) = IDYES then
+  begin
+    with cdsDocWare do
+    begin
+      while not IsEmpty do
+        Delete;
+    end;
+  end;
+end;
+
+procedure TWarrant.aCalcAmountExecute(Sender: TObject);
+var F : Variant;
+    ACol : TColumnEh;
+    S : String;
+begin
+  ACol := DBGridEh1.Columns[DBGridEh1.col];
+  F := ACol.Field.AsFloat;
+  S := ACol.Title.Caption;
+  if InputBoxDigit(Handle, S + ' "' + cdsDocWareWareName.AsString + '"', ACol.Title.Caption, F) then
+  begin
+    with cdsDocWare do
+    begin
+      Edit;
+      ACol.Field.AsFloat := F;
+      Post;
+    end;
+  end;   
+end;
+
+procedure TWarrant.miOpenClick(Sender: TObject);
+begin
+  MakeExport(false);
+end;
+
+procedure TWarrant.miPrintClick(Sender: TObject);
+begin
+  MakeExport(true);
+end;
+
+procedure TWarrant.MakeExport(APrint : boolean);
+var
+  ExcelApp, DataValues, Workbook, Column, Sheet, Cell1, Cell2, Range, V : Variant;
+  i : integer;
+  SSS : Extended;
+  S, S2, S3 : String;
+begin
+//  if cdsDocWare.IsEmpty then
+//    raise Exception.Create('Не введен ни один товар!!!' + #13 + #10 + 'Распечатать невозможно');
+  CheckExcel;
+  if cdsDoc.State in [dsEdit, dsInsert] then
+  begin
+    cdsDoc.Post;
+  end;
+  windows.SetFocus(DBDateEdit1.Handle);
+  try
+    ExcelApp := CreateOleObject('Excel.Application');
+    ExcelApp.visible := true;
+    ExcelApp.Application.EnableEvents := false;
+    ExcelApp.ScreenUpdating:= false;
+    Screen.Cursor := crSQLWait;
+    try
+      try Workbook := ExcelApp.WorkBooks.Add(ExtractFilePath(Application.EXEName) + 'docs_templ\Warrant.xlt');
+      except
+        on E : Exception do
+        begin
+         ShowMessage('Ошибка при открытии файла ' + #13 + #10 + E.Message);
+         raise Exception.Create(E.Message);
+        end;
+      end;
+      Sheet := ExcelApp.Workbooks[1].WorkSheets[1];
+
+   //   Cell1 := Sheet.Cells[1, 1];
+   //   Cell2 := Sheet.Cells[100, 20];
+    //  Range := Sheet.Range[Cell1, Cell2];
+      Range := Sheet.Cells;
+
+      SetExcelBMVal(Range, '^FIOAdv', cdsDocFIO.AsString + ' ' + cdsDocPost.AsString);
+      SetExcelBMVal(Range, '^Doc_NumAdv', 'Доверенность №' + cdsDocDoc_Num.AsString);
+      SetExcelBMVal(Range, '^DateToAdv', FormatDateTimeNull('dd mmmm yyyy г.', cdsDocDateTo.AsDateTime));
+
+      SetExcelBMVal(Range, '^OrgNameAdv', cdsDocOrgName.AsString + ' ' + cdsDocAddress.DisplayText);
+      SetExcelBMVal(Range, '^OrgNameAdv2', cdsDocOrgName2.AsString + ' ' + cdsDocAddress2.DisplayText);
+      SetExcelBMVal(Range, '^AccAdv', 'Счет №' + cdsDocAcc.AsString +
+                                      ' в ' + cdsDocBank.AsString +
+                                      ', БИК ' + cdsDocBIK.DisplayText +
+                                      ', корр. сч.' + cdsDocCorAcc.AsString);
+
+      SetExcelBMVal(Range, '^FIOAdv2', 'Доверенность выдана: ' + cdsDocFIO.AsString);
+      SetExcelBMVal(Range, '^Psp', 'Паспорт: серия ' + cdsDocPspSer.AsString + '№' + cdsDocPspNum.AsString);
+      SetExcelBMVal(Range, '^Psp2', 'Кем выдан ' + cdsDocPspOwner.AsString);
+      SetExcelBMVal(Range, '^Psp3', 'Дата выдачи: ' + FormatDateTimeNull('dd mmmm yyyy г.', cdsDocPspDate.AsDateTime));
+      SetExcelBMVal(Range, '^customerAdv', 'На получение от ' + cdsDoccustomer.AsString);
+
+      SetExcelBMVal(Range, '^ChifAdv', '(' + cdsDocChif.AsString + ')');
+      SetExcelBMVal(Range, '^BuhAdv', '(' + cdsDocBuh.AsString + ')');
+
+      CDSToExcel(cdsDoc, Range);
+      CDSToExcelTable(cdsDocWare, Range, '^Numb')
+    finally
+      ExcelApp.Visible := not APrint;
+      Screen.Cursor := crDefault;
+      if APrint then
+      begin
+        Sheet.PrintOut;
+        Workbook.Close(false);
+        ExcelApp.Visible := true;
+        ExcelApp.Quit;
+        ExcelApp := Null;
+      end
+      else
+        ExcelApp.ScreenUpdating:= true;
+    end;
+  except
+    on E : Exception do
+    begin
+      try
+        Workbook.Close(false);
+      except end;
+      ExcelApp.Quit;
+      ExcelApp := Null;
+      raise Exception.Create(E.Message);
+    end;
+  end;
+end;
+
+
+procedure TWarrant.DBGridEh1KeyPress(Sender: TObject; var Key: Char);
+var tmpCol : TColumnEh;
+    S, S2 : String;
+begin
+  if (Key = '.') then
+  begin
+    S := DecimalSeparator;
+    if S = ',' then S2 := '.' else S2 := ',';
+    tmpCol := TDBGridEh(Sender).Columns[TDBGridEh(Sender).col];
+    if (Key = S2[1]) and ((tmpCol.Field is TFloatField) or (tmpCol.Field is TBCDField)) then
+      Key := S[1];
+  end
+  else
+    if (Key = #13) then
+    begin
+      if TDBGridEh(Sender).DataSource.DataSet.State = dsEdit then
+        TDBGridEh(Sender).DataSource.DataSet.Post
+      else
+      begin
+        with TDBGrideh(Sender) do
+          if selectedindex < (fieldcount - 1) then
+            selectedindex := selectedindex + 1
+          else
+            selectedindex := 0;   
+      end;
+    end;
+end;
+
+procedure TWarrant.BitBtn3Click(Sender: TObject);
+var id_Doc_Org, OrgName, INN,
+  KPP, Chif, Buh, OKPO, OKPD, Address : Variant;
+begin
+  id_Doc_Org := cdsDocid_Doc_Org.Value;
+  if ShowSelectorDocOrg(cdsDocid_business.AsInteger, id_Doc_Org, OrgName, INN,
+  KPP, Chif, Buh, OKPO, OKPD, Address) then
+  begin
+    cdsDoc.Edit;
+    cdsDocid_Doc_Org.Value := id_Doc_Org;
+    cdsDocOrgName.AsVariant := OrgName;
+    cdsDocAddress.AsVariant := Address;
+    cdsDocINN.AsVariant := INN;
+    cdsDocOKPO.AsVariant := OKPO;
+    cdsDocChif.AsVariant := Chif;
+    cdsDocBuh.AsVariant := Buh;
+
+    cdsDocOrgName2.AsVariant := OrgName;
+    cdsDocAddress2.AsVariant := Address;
+    cdsDocINN2.AsVariant := INN;
+
+    cdsDoc.Post;
+    Doc_OrgBankGetDef(id_Doc_Org);
+  end;
+end;
+
+procedure TWarrant.Doc_OrgBankGetDef(id_Doc_Org : integer);
+var Bank, BIK, Acc, CorrAcc: OleVariant;
+begin
+  if DM.rsCA.AppServer.Doc_OrgBankGetDef(id_Doc_Org, Bank, BIK, Acc, CorrAcc) = 1 then
+  begin
+    cdsDoc.Edit;
+    cdsDocBank.AsVariant := Bank;
+    cdsDocBIK.AsVariant := BIK;
+    cdsDocAcc.AsVariant := Acc;
+    cdsDocCorAcc.AsVariant := CorrAcc;
+    cdsDoc.Post;
+  end;
+end;
+
+procedure TWarrant.BitBtn1Click(Sender: TObject);
+var Bank, BIK, Acc, CorrAcc: Variant;
+begin
+  if ShowSelectorDocOrgBank(cdsDocid_Doc_Org.AsInteger, Bank, BIK, Acc, CorrAcc)  then
+  begin
+    cdsDoc.Edit;
+    cdsDocBank.AsVariant := Bank;
+    cdsDocBIK.AsVariant := BIK;
+    cdsDocAcc.AsVariant := Acc;
+    cdsDocCorAcc.AsVariant := CorrAcc;
+    cdsDoc.Post;
+  end;
+end;
+
+procedure TWarrant.cdsDocAddressGetText(Sender: TField; var Text: String;
+  DisplayText: Boolean);
+begin
+  Text := DM.acsAdr(Sender);
+
+end;
+
+procedure TWarrant.cdsDocINNGetText(Sender: TField; var Text: String;
+  DisplayText: Boolean);
+begin
+  Text := DM.acsINN(Sender);
+
+end;
+
+end.

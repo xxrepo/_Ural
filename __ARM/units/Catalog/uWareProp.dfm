@@ -1,0 +1,100 @@
+object WareProp: TWareProp
+  Left = 257
+  Top = 108
+  Width = 511
+  Height = 350
+  BorderIcons = [biSystemMenu, biMaximize]
+  Caption = 'WareProp'
+  Color = clBtnFace
+  Constraints.MaxHeight = 350
+  Constraints.MinHeight = 350
+  Font.Charset = DEFAULT_CHARSET
+  Font.Color = clWindowText
+  Font.Height = -11
+  Font.Name = 'MS Sans Serif'
+  Font.Style = []
+  OldCreateOrder = False
+  Position = poScreenCenter
+  Scaled = False
+  PixelsPerInch = 96
+  TextHeight = 13
+  object Panel2: TPanel
+    Left = 0
+    Top = 282
+    Width = 503
+    Height = 41
+    Align = alBottom
+    Caption = ' '
+    TabOrder = 0
+    object btnCancel: TButton
+      Left = 417
+      Top = 9
+      Width = 75
+      Height = 25
+      Anchors = [akTop, akRight]
+      Cancel = True
+      Caption = 'Отмена'
+      ModalResult = 2
+      TabOrder = 1
+    end
+    object btnOk: TButton
+      Left = 326
+      Top = 9
+      Width = 75
+      Height = 25
+      Anchors = [akTop, akRight]
+      Caption = 'OK'
+      Default = True
+      ModalResult = 1
+      TabOrder = 0
+      OnClick = btnOkClick
+    end
+    object btnBarCode: TButton
+      Left = 8
+      Top = 8
+      Width = 75
+      Height = 25
+      Caption = 'Код'
+      TabOrder = 2
+      OnClick = btnBarCodeClick
+    end
+  end
+  inline fWareProp1: TfWareProp
+    Width = 503
+    Height = 282
+    Align = alClient
+    TabOrder = 1
+    inherited Panel1: TPanel
+      Width = 503
+      inherited edName: TDBEdit
+        Width = 375
+      end
+      inherited DBEdit2: TDBEdit
+        Width = 375
+      end
+    end
+    inherited pBase: TPanel
+      Width = 503
+    end
+    inherited Panel2: TPanel
+      Width = 503
+      Height = 172
+      inherited Label8: TLabel
+        Width = 100
+        Height = 26
+      end
+      inherited DBEdit5: TDBEdit
+        Width = 370
+      end
+      inherited DBEdit6: TDBEdit
+        Width = 370
+      end
+      inherited DBEdit7: TDBEdit
+        Width = 370
+      end
+      inherited DBEdit8: TDBEdit
+        Width = 370
+      end
+    end
+  end
+end

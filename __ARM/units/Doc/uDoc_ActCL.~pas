@@ -1,0 +1,564 @@
+unit uDoc_ActCL;
+
+interface
+
+uses
+  Windows, Messages, SysUtils, Classes, Graphics, Controls, Forms, Dialogs,
+  StdCtrls, ExtCtrls, Db, DBClient, Mask, DBCtrls, ToolEdit, RXDBCtrl,
+  RxDBComb, CurrEdit, ComObj, foMyFunc, RXCtrls, Menus, RxLookup, Buttons;
+
+type
+  TActCL = class(TForm)
+    Panel2: TPanel;
+    btnCancel: TButton;
+    btnOk: TButton;
+    cdsDoc: TClientDataSet;
+    DataSource1: TDataSource;
+    cdsDocid_ActCl: TAutoIncField;
+    cdsDocid_Oper: TIntegerField;
+    cdsDocDoc_Num: TStringField;
+    cdsDocDoc_Date: TDateTimeField;
+    cdsDocOrgName1: TStringField;
+    cdsDocSumm1: TBCDField;
+    cdsDocDoc1: TStringField;
+    cdsDocOrgName2: TStringField;
+    cdsDocSumm2: TBCDField;
+    cdsDocDoc2: TStringField;
+    cdsDocSumm: TBCDField;
+    cdsDocName1: TStringField;
+    cdsDocPost1: TStringField;
+    cdsDocName2: TStringField;
+    cdsDocPost2: TStringField;
+    cdsDocDoc_DateCreate: TDateTimeField;
+    cdsDocid_UserCreator: TIntegerField;
+    GroupBox1: TGroupBox;
+    Panel1: TPanel;
+    Label2: TLabel;
+    DBDateEdit1: TDBDateEdit;
+    Label1: TLabel;
+    DBEdit1: TDBEdit;
+    Label11: TLabel;
+    RxDBCalcEdit3: TRxDBCalcEdit;
+    Label13: TLabel;
+    Label15: TLabel;
+    DBEdit4: TDBEdit;
+    Label5: TLabel;
+    DBEdit2: TDBEdit;
+    DBEdit3: TDBEdit;
+    Label3: TLabel;
+    GroupBox2: TGroupBox;
+    Label6: TLabel;
+    Label7: TLabel;
+    Label8: TLabel;
+    Label9: TLabel;
+    Label10: TLabel;
+    RxDBCalcEdit1: TRxDBCalcEdit;
+    DBEdit5: TDBEdit;
+    DBEdit6: TDBEdit;
+    DBEdit7: TDBEdit;
+    DBEdit8: TDBEdit;
+    Panel3: TPanel;
+    Label4: TLabel;
+    RxDBCalcEdit2: TRxDBCalcEdit;
+    RxSpeedButton1: TRxSpeedButton;
+    PopupMenu1: TPopupMenu;
+    N1: TMenuItem;
+    N2: TMenuItem;
+    cdsDocCurGetList: TClientDataSet;
+    cdsDocCurGetListid_DocCur: TAutoIncField;
+    cdsDocCurGetListDocCurName: TStringField;
+    cdsDocCurGetListDocCurPartName: TStringField;
+    dsDocCurGetList: TDataSource;
+    Label20: TLabel;
+    RxDBLookupCombo1: TRxDBLookupCombo;
+    cdsDocCurGetListDef: TIntegerField;
+    cdsDocid_DocCur: TIntegerField;
+    cdsDocid_DocCur_1: TAutoIncField;
+    cdsDocDocCurName: TStringField;
+    cdsDocDocCurPartName: TStringField;
+    cdsDocid_business: TIntegerField;
+    cdsDocDef: TBooleanField;
+    cdsDocNumberCode: TStringField;
+    cdsDocDisabled: TBooleanField;
+    cdsDocid_Doc_Org: TIntegerField;
+    cbOrgName: TDBEdit;
+    BitBtn3: TBitBtn;
+    procedure cdsDocCalcFields(DataSet: TDataSet);
+    procedure FormClose(Sender: TObject; var Action: TCloseAction);
+    procedure FormKeyPress(Sender: TObject; var Key: Char);
+    procedure btnCancelClick(Sender: TObject);
+    procedure btnOkClick(Sender: TObject);
+    procedure FormDestroy(Sender: TObject);
+    procedure FormShow(Sender: TObject);
+    procedure N1Click(Sender: TObject);
+    procedure N2Click(Sender: TObject);
+    procedure BitBtn3Click(Sender: TObject);
+  private
+    FHandle : HWnd;
+    FDocParamz : TDocParamz;
+    function CheckData: boolean;
+    function ConfirmChanges: boolean;
+    procedure MakeExport(APrint: boolean);
+    procedure Doc_OrgBankGetDef(id_Doc_Org: integer);
+  public
+    constructor Create(AOwner : TComponent); override;
+    destructor Destroy; override;
+    procedure CreateParams(var Params: TCreateParams); override;
+    function SaveProp: boolean;
+    procedure initialize(ADocParamz : TDocParamz;
+                   AcdsOper : TClientDataSet;
+                   AcdsWare : TClientDataSet);
+
+  end;
+
+var
+  ActCL: TActCL;
+
+  procedure ShowActCL(AHandle : HWnd; ADocParamz : TDocParamz;
+                   AcdsOper : TClientDataSet;
+                   AcdsWare : TClientDataSet);
+implementation
+
+uses uDM, uSelectorDocOrg;
+
+procedure ShowActCL(AHandle : HWnd; ADocParamz : TDocParamz;
+                   AcdsOper : TClientDataSet;
+                   AcdsWare : TClientDataSet);
+var F : TActCL;
+begin
+  DM.Rights_GetUserRights(26, Null);
+  F := TActCL.Create(nil);
+  try
+    F.FHandle := AHandle;
+    F.initialize(ADocParamz, AcdsOper, AcdsWare);
+    F.ModalResult := mrNone;
+{$IFNDEF LC}
+    F.Show;
+{$ELSE}
+    F.MakeExport(false);
+    F.Free;
+{$ENDIF}
+  except
+    on E : Exception do
+    begin
+      F.Free;
+      raise Exception.Create(E.Message);
+    end;
+  end;
+end;
+{$R *.DFM}
+
+procedure TActCL.cdsDocCalcFields(DataSet: TDataSet);
+begin
+  with DataSet do
+    FieldByName('WoVAT').AsFloat := FieldByName('Summ').AsFloat * (100 - FieldByName('VAT').AsFloat)/100;
+end;
+
+constructor TActCL.Create(AOwner: TComponent);
+begin
+  inherited;
+  SetWindowLong(Handle, GWL_HWNDPARENT, 0);
+end;
+
+procedure TActCL.CreateParams(var Params: TCreateParams);
+begin
+  inherited;
+  Params.ExStyle:=(Params.ExStyle or WS_EX_APPWINDOW);
+
+end;
+
+procedure TActCL.initialize(ADocParamz : TDocParamz;
+                   AcdsOper : TClientDataSet;
+                   AcdsWare : TClientDataSet);
+var NeedOpen : boolean;
+    id_Doc_Org, OrgName, INN,
+  KPP, Chif, Buh, OKPO, OKPD, Address: OleVariant;
+  xDate: TDateTime; xNum: String;
+begin
+  FPrntW := GetControlFormHHH(AcdsOper);
+  btnOk.Enabled := (ADocParamz.ID_Oper > 0) or (ADocParamz.id_Doc > 0);
+  NeedOpen := AcdsOper = nil;
+  if AcdsOper = nil then
+  begin
+    AcdsOper := DM.cdsOperFin;
+  end;
+  FDocParamz := ADocParamz;
+
+  with cdsDoc do
+  begin
+    Close;
+    Params.ParamByName('@id_ActCl').AsInteger := FDocParamz.id_Doc;
+    Open;
+  end;
+
+  if FDocParamz.id_Doc = -1 then
+  begin
+    with AcdsOper do
+    begin
+      if NeedOpen then
+      begin
+        Close;
+        Params.ParamByName('@id_Oper').AsInteger := FDocParamz.id_Oper;
+        Params.ParamByName('@is_Mirr').AsBoolean := FDocParamz.is_Mirr;
+        Open;
+      end;
+      try
+        cdsDoc.Edit;
+
+
+        cdsDocid_business.Value := FieldByName('id_business').AsInteger;
+        cdsDocDoc_Num.AsVariant := DM.rsCA.AppServer.GetDoc_Num2(0, cdsDocid_business.Value);
+        cdsDocid_UserCreator.AsInteger := DM.IDUser;
+        cdsDocid_Oper.AsInteger := FDocParamz.id_Oper;
+        cdsDocDoc_Date.AsDateTime := date;
+
+        if FieldByName('SummSys').IsNull then
+          cdsDocSumm.AsFloat := FieldByName('PriceOper').AsFloat
+        else
+          cdsDocSumm.AsFloat := FieldByName('SummSys').AsFloat;
+        cdsDocOrgName2.AsString := FieldByName('ReprName').AsString;
+        if not FieldByName('Id_CurrencySys').IsNull then
+          cdsDocid_DocCur.AsInteger := FieldByName('Id_CurrencySys').AsInteger
+        else
+          cdsDocid_DocCur.AsInteger := FieldByName('Id_CurrencyOper').AsInteger;
+        if DM.GetDocNum(cdsDocid_Oper.AsInteger, cdsDocid_business.AsInteger, xDate, xNum) then
+        begin
+          cdsDocDoc_Num.AsString := xNum;
+          cdsDocDoc_Date.AsDateTime := xDate;
+        end;
+        cdsDoc.Post;
+      finally
+        if NeedOpen then Close;
+      end;
+    end;
+  end
+  else
+  begin
+    with cdsDoc do
+    begin
+      if FieldByName('Doc_Num').IsNull then
+      begin
+        Edit;
+        FieldByName('Doc_Num').AsString := IntToStr(FDocParamz.id_Doc);
+        Post;
+      end;
+    end;
+  end;
+  if FDocParamz.Copy then
+    FDocParamz.id_Oper := -1;
+  if (FDocParamz.ID_Doc = -1) then
+  begin
+    Caption := 'Новый акт взимозачета';
+  end
+  else
+  begin
+    Caption := 'Акт взимозачета №' + cdsDocDoc_Num.AsString;
+  end;
+  if FDocParamz.ReadOnly then
+    Caption := Caption + ', только чтение';
+  if (FDocParamz.ID_Doc = -1) and not (FDocParamz.Copy) then
+    if DM.GetDefOrg(cdsDocid_business.AsInteger, id_Doc_Org, OrgName, INN,
+    KPP, Chif, Buh, OKPO, OKPD, Address) then
+  begin
+    cdsDoc.Edit;
+    cdsDocid_Doc_Org.AsVariant := id_Doc_Org;
+    cdsDocOrgName1.AsVariant := OrgName;
+    cdsDoc.Post;
+  end;
+  DM.cdsDocCurGetListOpen(cdsDocCurGetList, RxDBLookupCombo1, cdsDocid_business.Value, FDocParamz.ID_Doc,
+                          cdsDocid_DocCur.AsInteger);
+end;
+
+function TActCL.SaveProp: boolean;
+var ID_Tmp, id_Oper: Integer;
+    Doc_Num, Doc_Date,
+    OrgName1, OrgName2, Summ1, Summ2, Doc1, Doc2, Name1, Name2, Post1, Post2,
+    Summ, id_UserCreator: OleVariant;
+    id_DocCur : integer;
+    id_Doc_Org : integer;
+    OldCursor : TCursor;
+begin
+  if FDocParamz.ReadOnly or (cdsDoc.ChangeCount = 0) then Exit;
+  ID_Tmp := FDocParamz.ID_Doc;
+  OldCursor := Screen.Cursor;
+  Screen.Cursor := crSQLWait;
+  Result := false;
+  with cdsDoc do
+  begin
+    id_DocCur := fieldByName('id_DocCur').AsInteger;
+    id_Oper := fieldByName('id_Oper').AsInteger;
+    Doc_Num := fieldByName('Doc_Num').Value;
+    Doc_Date := fieldByName('Doc_Date').Value;
+
+    OrgName1 := fieldByName('OrgName1').Value;
+    OrgName2 := fieldByName('OrgName2').Value;
+    Summ1 := fieldByName('Summ1').Value;
+    Summ2  := fieldByName('Summ2').Value;
+    Doc1 := fieldByName('Doc1').Value;
+    Doc2 := fieldByName('Doc2').Value;
+    Name1 := fieldByName('Name1').Value;
+    Name2 := fieldByName('Name2').Value;
+    Post1 := fieldByName('Post1').Value;
+    Post2 := fieldByName('Post2').Value;
+    Summ := fieldByName('Summ').Value;    
+
+    id_UserCreator := fieldByName('id_UserCreator').Value;
+    id_Doc_Org := fieldByName('id_Doc_Org').AsInteger;
+  end;
+
+  BeginTruns(DM.rsCA);
+  try
+    ID_Tmp := DM.rsCA.AppServer.Doc_ActClEdit(FDocParamz.ID_Doc, id_Oper, Doc_Num, Doc_Date,
+             OrgName1, OrgName2, Summ1, Summ2, Doc1, Doc2, Name1, Name2, Post1, Post2,
+             Summ, id_UserCreator, id_DocCur, id_Doc_Org);
+
+    if ID_Tmp = -1 then
+      raise Exception.Create('Ошибка при сохранении свойств');
+
+    CommitTrans(DM.rsCA);
+    Result := true;
+  except
+    on E : Exception do
+    begin
+      Screen.Cursor := OldCursor;
+      RollbackTrans(DM.rsCA);
+      FDocParamz.ID_Doc := ID_Tmp;
+      raise Exception.Create(E.Message);
+    end;
+  end;
+  Screen.Cursor := OldCursor;
+end;
+
+procedure TActCL.FormClose(Sender: TObject; var Action: TCloseAction);
+begin
+  Action := caFree;
+  if ModalResult = mrOk then
+    if SaveProp then
+      SendMessage(FHandle, xxx_RefrMsg, FDocParamz.ID_Doc, 0);
+end;
+
+procedure TActCL.FormKeyPress(Sender: TObject; var Key: Char);
+begin
+  if (Key = #13) and (cdsDoc.State = dsEdit) then cdsDoc.Post;
+end;
+
+procedure TActCL.btnCancelClick(Sender: TObject);
+begin
+  Close;
+end;
+
+procedure TActCL.btnOkClick(Sender: TObject);
+begin
+  if not ConfirmChanges then
+    ModalResult := mrNone
+  else
+  begin
+    ModalResult := mrOk;
+    Close;
+  end;
+end;
+
+function TActCL.ConfirmChanges: boolean;
+var SL : TStringList;
+    CDS : TClientDataSet;
+begin
+  Result := false;
+  if not CheckData then
+    Exit;
+  CDS := cdsDoc;
+  if CDS.State <> dsEdit then
+    CDS.Edit;
+  Result := true;
+  if (FDocParamz.ID_Doc <> -1) then
+  begin
+    SL := TStringList.Create;
+    try
+      if (CDS.ChangeCount > 0) then
+      begin
+        CompareField(CDS, 'Doc_Num', 'Номер документа', SL);
+        CompareField(CDS, 'Doc_Date', 'Дата составления', SL);
+
+        CompareField(CDS, 'OrgName1', 'Организация', SL);
+        CompareField(CDS, 'Summ1', 'Задолженность', SL);
+        CompareField(CDS, 'Doc1', 'Основание', SL);
+        CompareField(CDS, 'Post1', 'Должность', SL);
+
+        CompareField(CDS, 'OrgName2', 'Организация', SL);
+        CompareField(CDS, 'Summ2', 'Задолженность', SL);
+        CompareField(CDS, 'Doc2', 'Основание', SL);
+        CompareField(CDS, 'Post2', 'Должность', SL);
+
+        CompareField(CDS, 'Summ', 'Сумма зачета', SL);
+      end;
+
+      if SL.Count > 0 then
+        Result := MessageBox(Handle, PChar('Были изменены следующие данные:' + #13 + #10 + SL.Text ), 'Подтвердите изменения', MB_YESNO + MB_ICONQUESTION) = idYes;
+    finally
+      SL.Free;
+    end;
+  end;
+  CDS.Post;
+end;
+
+function TActCL.CheckData: boolean;
+begin
+  Result := false;
+//  CheckEmptyControl(Handle, DBEdit1);
+  CheckEmptyControl(Handle, DBDateEdit1);
+  
+  CheckEmptyControl(Handle, cbOrgName);
+  CheckEmptyControl(Handle, RxDBLookupCombo1);
+  
+  CheckEmptyControl(Handle, RxDBCalcEdit3);
+  CheckEmptyControl(Handle, DBEdit4);
+  CheckEmptyControl(Handle, DBEdit2);
+  CheckEmptyControl(Handle, DBEdit3);
+
+  CheckEmptyControl(Handle, DBEdit8);
+  CheckEmptyControl(Handle, RxDBCalcEdit1);
+  CheckEmptyControl(Handle, DBEdit5);
+  CheckEmptyControl(Handle, DBEdit6);
+  CheckEmptyControl(Handle, DBEdit7);
+
+  CheckEmptyControl(Handle, RxDBCalcEdit2);
+  Result := true;
+end;
+
+procedure TActCL.FormDestroy(Sender: TObject);
+begin
+  SaveFormSettingsToRegistry(Self, SRegPath + '\' + ClassName);
+
+end;
+
+procedure TActCL.FormShow(Sender: TObject);
+begin
+  LoadFormSettingsToRegistry(Self, SRegPath + '\' + ClassName);
+end;
+
+procedure TActCL.N1Click(Sender: TObject);
+begin
+  MakeExport(false);
+end;
+
+procedure TActCL.N2Click(Sender: TObject);
+begin
+  MakeExport(true);
+end;
+
+procedure TActCL.MakeExport(APrint : boolean);
+var
+  ExcelApp, DataValues, Workbook, Column, Sheet, Cell1, Cell2, Range, V : Variant;
+  i : integer;
+  SSS : Extended;
+  S, S2, S3 : String;
+begin
+  CheckExcel;
+  if cdsDoc.State in [dsEdit, dsInsert] then
+  begin
+    cdsDocDocCurName.AsString := cdsDocCurGetListDocCurName.AsString;
+    cdsDocDocCurPartName.AsString := cdsDocCurGetListDocCurPartName.AsString;
+    cdsDoc.Post;
+  end;
+  windows.SetFocus(DBDateEdit1.Handle);
+  try
+    SSS := cdsDocSumm.AsFloat;
+    ExcelApp := CreateOleObject('Excel.Application');
+    ExcelApp.visible := true;
+    ExcelApp.Application.EnableEvents := false;
+    ExcelApp.ScreenUpdating:= false;
+    Screen.Cursor := crSQLWait;
+    try
+      try Workbook := ExcelApp.WorkBooks.Add(ExtractFilePath(Application.EXEName) + 'docs_templ\Offset.xlt'); except end;
+      Sheet := ExcelApp.Workbooks[1].WorkSheets[1];
+
+   //   Cell1 := Sheet.Cells[1, 1];
+   //   Cell2 := Sheet.Cells[100, 20];
+    //  Range := Sheet.Range[Cell1, Cell2];
+      Range := Sheet.Cells;
+
+      SetExcelBMVal(Range, '^Doc_Num', 'Акт взаимозачета №' + cdsDocDoc_Num.AsString);
+      SetExcelBMVal(Range, '^Doc_DateAdv', 'от ' + FormatDateTimeNull('dd mmmm yyyy г.', cdsDocDoc_Date.AsDateTime));
+
+
+      SSS := cdsDocSumm.AsFloat;
+      S := (IntToStr(Trunc(SSS))) + ' ' + cdsDocCurGetListDocCurName.AsString + '. ' + FormatFloat('00 ' + cdsDocCurGetListDocCurPartName.AsString + '.', Frac(SSS) * 100);
+      SetExcelBMVal(Range, '^SummAdv', S);
+
+      SSS := cdsDocSumm1.AsFloat;
+      S2 := (IntToStr(Trunc(SSS))) + ' ' + cdsDocCurGetListDocCurName.AsString + '. ' + FormatFloat('00 ' + cdsDocCurGetListDocCurPartName.AsString + '.', Frac(SSS) * 100);
+      SSS := cdsDocSumm2.AsFloat;
+      S3 := (IntToStr(Trunc(SSS))) + ' ' + cdsDocCurGetListDocCurName.AsString + '. ' + FormatFloat('00 ' + cdsDocCurGetListDocCurPartName.AsString + '.', Frac(SSS) * 100);
+
+      S := 'Задолженность ' + cdsDocOrgName1.AsString +
+           ' перед '  + cdsDocOrgName2.AsString +
+           ' составляет ' + S2 + ' по следующим договорам:';
+      SetExcelBMVal(Range, '^OrgNameAdv1', S);
+
+      S := 'Задолженность ' + cdsDocOrgName2.AsString +
+           ' перед '  + cdsDocOrgName1.AsString +
+           ' составляет ' + S3 + ' по следующим договорам:';
+      SetExcelBMVal(Range, '^OrgNameAdv2', S);
+
+      CDSToExcel(cdsDoc, Range);
+    finally
+      ExcelApp.Visible := not APrint;
+      Screen.Cursor := crDefault;
+      if APrint then
+      begin
+        Sheet.PrintOut;
+        Workbook.Close(false);
+        ExcelApp.Visible := true;
+        ExcelApp.Quit;
+        ExcelApp := Null;
+      end
+      else
+        ExcelApp.ScreenUpdating:= true;
+    end;
+  except
+    on E : Exception do
+    begin
+      try
+        Workbook.Close(false);
+      except end;
+      ExcelApp.Quit;
+      ExcelApp := Null;
+      raise Exception.Create(E.Message);
+    end;
+  end; 
+end;
+
+
+procedure TActCL.BitBtn3Click(Sender: TObject);
+var id_Doc_Org, OrgName, INN,
+  KPP, Chif, Buh, OKPO, OKPD, Address : Variant;
+begin
+  id_Doc_Org := cdsDocid_Doc_Org.Value;
+  if ShowSelectorDocOrg(cdsDocid_business.AsInteger, id_Doc_Org, OrgName, INN,
+  KPP, Chif, Buh, OKPO, OKPD, Address) then
+  begin
+    cdsDoc.Edit;
+    cdsDocid_Doc_Org.AsVariant := id_Doc_Org;
+    cdsDocOrgName1.AsVariant := OrgName;
+    cdsDoc.Post;
+   // Doc_OrgBankGetDef(id_Doc_Org);
+  end;
+end;
+
+procedure TActCL.Doc_OrgBankGetDef(id_Doc_Org : integer);
+var Bank, BIK, Acc, CorrAcc: String;
+begin
+ { if Doc_OrgBankGetDef(id_Doc_Org, Bank, BIK, Acc, CorrAcc) = 1 then
+  begin
+
+  end;  }
+end;
+
+
+destructor TActCL.Destroy;
+begin
+  inherited;
+  BringWindowToTop(FPrntW);
+
+end;
+
+end.

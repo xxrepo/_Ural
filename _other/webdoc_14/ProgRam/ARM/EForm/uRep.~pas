@@ -1,0 +1,68 @@
+unit uRep;
+
+interface
+
+uses
+  Windows, Messages, SysUtils, Classes, Graphics, Controls, Forms, Dialogs,
+  StdCtrls, ExtCtrls, Mask, ToolEdit,{$IFDEF VER150} Variants,{$ENDIF} CurrEdit,
+  comctrls, foMyFunc, frUnDict, Db, DBClient, frFiles;
+
+type
+  TRep = class(TForm)
+    Panel2: TPanel;
+    btnOk: TButton;
+    fFiles1: TfFiles;
+    procedure FormShow(Sender: TObject);
+    procedure FormDestroy(Sender: TObject);
+    procedure fGrp1OrgTreeViewDblClick(Sender: TObject);
+  private
+    FSelType : boolean;
+  public
+  end;
+
+var
+  Rep: TRep;
+function ShowRep(OnlyNAN : boolean; CAIDList : String; ExtSQL: Variant): boolean;
+
+implementation
+
+uses uDM;
+
+{$R *.DFM}
+function ShowRep(OnlyNAN : boolean; CAIDList : String; ExtSQL: Variant): boolean;
+var F : TRep;
+    ExtId : integer;
+begin
+  Result := false;
+  F := TRep.Create(nil);
+  try
+    F.fFiles1.Init(OnlyNAN, ExtSQL, SysKey);
+
+    F.ShowModal;
+    if F.ModalResult = mrOk then
+    begin
+ 
+      Result := true;
+    end;
+  finally
+    F.Free;
+  end;
+end;
+
+procedure TRep.FormShow(Sender: TObject);
+begin
+  LoadFormSettingsToRegistry(Self, SRegPath + '\' + Name);
+end;
+
+procedure TRep.FormDestroy(Sender: TObject);
+begin
+  SaveFormSettingsToRegistry(Self, SRegPath + '\' + Name);
+end;
+
+procedure TRep.fGrp1OrgTreeViewDblClick(Sender: TObject);
+begin
+  if btnOk.Enabled then btnOk.Click;
+end;
+
+end.
+

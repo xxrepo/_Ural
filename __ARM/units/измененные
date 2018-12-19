@@ -1,0 +1,30 @@
+
+BEGIN
+    IF EXISTS (SELECT * FROM OP_Oper2 (NOLOCK) WHERE Deleted = 0 AND (id_WareHouse=@id_WareHouse OR id_WareHouse_Ext=@id_WareHouse)) 
+      RAISERROR ('Невозможно удалить склад. По нему были проведены операции!', 16, 1) 
+  RETURN
+END
+
+
+
+
+
+
+ALTER TABLE Acc_Group ADD ShowInRoot BIT NOT NULL default 0
+ALTER TABLE CA_Repr_Group ADD ShowInRoot BIT NOT NULL default 0
+ALTER TABLE Mn_Group ADD ShowInRoot BIT NOT NULL default 0
+ALTER TABLE Wh_Group ADD ShowInRoot BIT NOT NULL default 0
+
+
+ALTER TABLE Acc_Acc ADD id_Acc_Group INT NULL
+ALTER TABLE CA_Repr ADD id_Repr_Group INT NULL
+
+ALTER TABLE Mn_Manufact ADD id_Manufact_Group INT NULL
+ALTER TABLE Wh_Warehouse ADD id_WareHouse_Group INT NULL
+
+
+///*************
+CAGroup_Add
+CAGroup_Edit
+CAGroup_Del
+ContrAgentSetGrp

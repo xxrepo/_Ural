@@ -1,0 +1,7 @@
+EInvalidGridOperation 17.03.2018 16:39:16 - admin     - Fixed row count must be less than row count
+EInvalidGridOperation 17.03.2018 16:39:21 - admin     - Fixed row count must be less than row count
+Exception 17.03.2018 16:52:11 - admin     - Время ожидания запроса истекло
+Exception 17.03.2018 16:52:50 - admin     - Время ожидания запроса истекло
+Exception 17.03.2018 16:53:25 - admin     - Время ожидания запроса истекло
+Exception 17.03.2018 16:54:17 - admin     - Время ожидания запроса истекло
+EOleException 17.03.2018 17:02:26 - admin     - Procedure or function 'RPT_NewRepTree' expects parameter '@id_User', which was not supplied

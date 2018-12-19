@@ -1,0 +1,81 @@
+CREATE       PROCEDURE BO_GetBillList(@id_Task int)
+AS
+
+if @id_Task=-3 -- Только те, у которых закрыты задачи и они оплачены
+SELECT 
+ distinct
+ SL_BILL.id_Bill,
+ SL_BILL.DateCreate,
+ SL_BILL.DateClose,
+ CL_Client.LastName,
+ CL_Client.FirstName
+FROM 
+ SL_BILL,
+ CL_Client,
+ BOTasks, 
+ BOReadyTask 
+WHERE
+ SL_BILL.WasPayed=1 and 
+ SL_BILL.ID_Client=CL_Client.ID_Client
+ and
+(
+(SELECT COUNT(*) FROM   BOTasks 
+ WHERE
+ BOTasks.id_Bill=SL_BILL.id_Bill)=0
+ OR  
+(BOTasks.id_Bill=SL_BILL.id_Bill and BOTasks.id_ReadyTask=BOReadyTask.id_ReadyTask and BOReadyTask.IsEndOfTask=1)
+)
+ and SL_BILL.id_Closer is  Null 
+ and SL_BILL.DateClose is   Null ;
+
+if @id_Task=-2 -- Полный список
+SELECT 
+ B.id_Bill,
+ B.DateCreate,
+ B.DateClose,
+ LastName = ISNULL(CL.LastName, Org.Name),
+ CL.FirstName
+FROM SL_BILL B (NOLOCK)
+LEFT JOIN CL_Client CL (NOLOCK) ON CL.ID_Client = B.ID_Client
+LEFT JOIN Org_Organization Org (NOLOCK) ON Org.ID_Organization = B.ID_PayerOrg
+WHERE B.DateClose is Null
+
+if @id_Task=-1 -- Только те, у которых есть задачи
+SELECT 
+ distinct
+ SL_BILL.id_Bill,
+ SL_BILL.DateCreate,
+ SL_BILL.DateClose,
+ CL_Client.LastName,
+ CL_Client.FirstName
+FROM 
+ SL_BILL,
+ CL_Client,
+ BOTasks,
+ BOReadyTask 
+WHERE
+ SL_BILL.ID_Client=CL_Client.ID_Client and
+ BOTasks.id_ReadyTask=BOReadyTask.id_ReadyTask and BOReadyTask.IsEndOfTask<>1 AND 
+ BOTasks.id_Bill=SL_BILL.id_Bill and
+ SL_BILL.id_Closer is  Null 
+ and SL_BILL.DateClose is   Null; 
+
+if @id_Task>-1 -- По конкретному договору
+SELECT 
+ SL_BILL.id_Bill,
+ SL_BILL.DateCreate,
+ SL_BILL.DateClose,
+ CL_Client.LastName,
+ CL_Client.FirstName
+FROM 
+ SL_BILL,
+ CL_Client,
+ BOTasks 
+WHERE
+ SL_BILL.ID_Client=CL_Client.ID_Client and
+ BOTasks.id_Bill=SL_BILL.id_Bill and
+ BOTasks.id_Task=@id_Task and
+ SL_BILL.id_Closer is  Null 
+ and SL_BILL.DateClose is   Null;
+
+GO

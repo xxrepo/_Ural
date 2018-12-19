@@ -1,0 +1,129 @@
+object Egg: TEgg
+  Left = 248
+  Top = 143
+  Width = 482
+  Height = 346
+  BorderIcons = [biMinimize, biMaximize]
+  Caption = 'gfg'
+  Color = clBtnFace
+  Font.Charset = DEFAULT_CHARSET
+  Font.Color = clWindowText
+  Font.Height = -11
+  Font.Name = 'MS Sans Serif'
+  Font.Style = []
+  OldCreateOrder = False
+  Position = poScreenCenter
+  Scaled = False
+  OnCreate = FormCreate
+  PixelsPerInch = 96
+  TextHeight = 13
+  object Label1: TLabel
+    Left = 8
+    Top = 8
+    Width = 37
+    Height = 13
+    Caption = '4tg3tg'
+    Font.Charset = DEFAULT_CHARSET
+    Font.Color = clWindowText
+    Font.Height = -11
+    Font.Name = 'MS Sans Serif'
+    Font.Style = [fsBold]
+    ParentFont = False
+  end
+  object Label2: TLabel
+    Left = 208
+    Top = 8
+    Width = 26
+    Height = 13
+    Cursor = crHandPoint
+    Caption = 'eteh'
+    Font.Charset = DEFAULT_CHARSET
+    Font.Color = clBlue
+    Font.Height = -11
+    Font.Name = 'MS Sans Serif'
+    Font.Style = [fsBold]
+    ParentFont = False
+    OnClick = Label2Click
+  end
+  object Image1: TImage
+    Left = 429
+    Top = 0
+    Width = 33
+    Height = 33
+    Picture.Data = {
+      055449636F6E0000010001002020040000000000E80200001600000028000000
+      2000000040000000010004000000000000020000000000000000000000000000
+      0000000000000000000080000080000000808000800000008000800080800000
+      C0C0C000808080000000FF0000FF000000FFFF00FF000000FF00FF00FFFF0000
+      FFFFFF00F8888888888888888888888888888888FF8888888888888888888888
+      88888888FF77777088887877777F7FFF07777788FF77777088887877777F7FFF
+      07777788FF777777900000008088880977777788FF7777790888878F7FFFF7F0
+      97777788FF777799900000000808800979777788FF7779799000000000000009
+      97977788FF777999990808080808089999797788FF7797999911111111111199
+      99997788FF797999991111111111119999979788FF7799999911111111111199
+      99999788FF799999991111111111119999997988FF9799999911111111111199
+      99999788FF799999991111111111119999997988FF9799999911111111111199
+      99999788FF799999991111111111119999997988FF9799999911111111111199
+      99999788FF799999991111111111119999997988FF9799999991111111111999
+      99999788FF799999999111111111199999997788FF7979999999111111119999
+      99979788FF779999999999999999999999997788FF7797999999999999999999
+      99797788FF777979999999999999999997977788FF7777979999999999999999
+      79777788FF777779799999999999999797777788FF7777779979999999999799
+      77777788FF777777779979797979997777777788FF7777777777979797977777
+      77777788FFFFFFFFFFFFFFFFFFFFFFFFFFFFFF88FFFFFFFFFFFFFFFFFFFFFFFF
+      FFFFFFF800000000000000000000000000000000000000000000000000000000
+      0000000000000000000000000000000000000000000000000000000000000000
+      0000000000000000000000000000000000000000000000000000000000000000
+      0000000000000000000000000000000000000000000000000000000000000000
+      00000000}
+  end
+  object asf: TSecretPanel
+    Left = 3
+    Top = 37
+    Width = 462
+    Height = 237
+    Cycled = True
+    Interval = 80
+    Lines.Strings = (
+      ''
+      'tyher'
+      'ge'
+      'r'
+      'gr'
+      'g'
+      'r')
+    TextStyle = bvSpace
+    Font.Charset = DEFAULT_CHARSET
+    Font.Color = clWindowText
+    Font.Height = -13
+    Font.Name = 'MS Sans Serif'
+    Font.Style = []
+    ParentFont = False
+    TabOrder = 0
+  end
+  object Panel1: TPanel
+    Left = 0
+    Top = 278
+    Width = 474
+    Height = 41
+    Align = alBottom
+    BevelOuter = bvNone
+    Caption = ' '
+    TabOrder = 1
+    object Button1: TButton
+      Left = 390
+      Top = 8
+      Width = 75
+      Height = 25
+      Caption = 'Закрыть'
+      ModalResult = 1
+      TabOrder = 0
+    end
+  end
+  object Timer1: TTimer
+    Interval = 80
+    OnTimer = Timer1Timer
+    Left = 272
+    Top = 104
+  end
+end

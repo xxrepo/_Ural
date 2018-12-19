@@ -1,0 +1,97 @@
+EDatabaseError 30.04.2014 10:30:26 - admin     - cdsExp: Dataset not in edit or insert mode
+EInvalidPointer 30.04.2014 10:39:32 - admin     - Invalid pointer operation
+EOleException 30.04.2014 12:56:23 - admin     - Ошибка при удалении счета - Невозможно удалить счет. По нему были проведены операции!
+EOleException 30.04.2014 13:00:55 - admin     - Ошибка при удалении - Невозможно удалить представителя. По нему были проведены операции!
+EOleException 04.05.2014 15:40:46 - admin     - Ошибка при удалении - Невозможно удалить контрагента. По нему были проведены операции!
+EOleException 04.05.2014 15:40:48 - admin     - Ошибка при удалении - Невозможно удалить представителя. По нему были проведены операции!
+EOleException 04.05.2014 15:50:47 - admin     - Ошибка при удалении - Невозможно удалить представителя. По нему были проведены операции!
+EOleException 04.05.2014 15:50:50 - admin     - Ошибка при удалении - Невозможно удалить контрагента. По нему были проведены операции!
+EAdvGridError 15.05.2014 13:37:24 - admin     - Cell does not contain integer value
+EAdvGridError 15.05.2014 13:37:28 - admin     - Cell does not contain integer value
+EAdvGridError 15.05.2014 13:37:35 - admin     - Cell does not contain integer value
+EAdvGridError 15.05.2014 13:54:27 - admin     - Cell does not contain integer value
+EAdvGridError 15.05.2014 13:54:49 - admin     - Cell does not contain integer value
+EAdvGridError 15.05.2014 13:55:04 - admin     - Cell does not contain integer value
+EAdvGridError 15.05.2014 13:55:24 - admin     - Cell does not contain integer value
+EAdvGridError 15.05.2014 13:56:05 - admin     - Cell does not contain integer value
+EAdvGridError 15.05.2014 13:56:50 - admin     - Cell does not contain integer value
+EAdvGridError 15.05.2014 14:00:08 - admin     - Cell does not contain integer value
+EAdvGridError 15.05.2014 14:00:11 - admin     - Cell does not contain integer value
+EAdvGridError 15.05.2014 14:09:08 - admin     - Cell does not contain integer value
+EReadError 03.06.2014 15:09:18 - admin     - Ancestor for 'ToolButton13' not found
+EOleException 13.06.2014 9:45:12 - admin     - Procedure 'Inv_ProjectGetList' expects parameter '@id_business', which was not supplied
+EVariantError 13.06.2014 10:18:56 - admin     - Invalid variant type conversion
+EVariantError 13.06.2014 10:19:16 - admin     - Invalid variant type conversion
+EVariantError 13.06.2014 10:20:03 - admin     - Invalid variant type conversion
+EVariantError 13.06.2014 10:20:36 - admin     - Invalid variant type conversion
+EOleException 01.07.2014 13:06:39 - admin     - Время ожидания запроса истекло
+Exception 08.07.2014 10:11:46 - admin     - Перенос на 08-07-2013 невозможен. Последний закрытый день 08-07-2014
+EOleException 08.07.2014 10:41:59 - admin     - Invalid column name 'OpComment'
+EOleException 08.07.2014 11:16:32 - admin     - Invalid column name 'M1'
+EOleException 27.07.2014 17:19:40 - admin     - Неправильно определен объект Parameter. Предоставлены несогласованные или неполные сведения
+EOleException 27.07.2014 17:19:52 - admin     - Неправильно определен объект Parameter. Предоставлены несогласованные или неполные сведения
+EOleException 27.07.2014 17:20:53 - admin     - Неправильно определен объект Parameter. Предоставлены несогласованные или неполные сведения
+EVariantError 28.07.2014 14:38:56 - admin     - Invalid variant operation
+EOleException 24.08.2014 22:21:44 - admin     - Невозможно снять визу с операции. Был изменен курс или закрыт баланс
+EOleException 27.08.2014 11:24:36 - admin     - Время ожидания запроса истекло
+EOleException 29.09.2014 0:58:45 - admin     - Время ожидания запроса истекло
+Exception 15.10.2014 17:45:12 - admin     - Перенос на 01-10-2014 невозможен. Последний закрытый день 15-10-2014
+Exception 15.10.2014 17:45:43 - admin     - Перенос на 01-10-2014 невозможен. Последний закрытый день 15-10-2014
+EConvertError 21.01.2015 16:29:41 - admin     - '' is not a valid date
+EAccessViolation 21.01.2015 16:43:09 - admin     - Access violation at address 4DB1E107 in module 'midas.dll'. Write of address 0C2B1DA0
+EAccessViolation 21.01.2015 16:43:15 - admin     - Access violation at address 4DB1DEBC in module 'midas.dll'. Write of address 0C3DCEE8
+EOleException 23.01.2015 14:20:47 - admin     - spPrjList: Field 'LineNum' not found
+EDatabaseError 28.01.2015 19:17:00 - admin     - cdsBJTree: Cannot perform this operation on a closed dataset
+EDatabaseError 28.01.2015 19:27:53 - admin     - cdsBJTree: Cannot perform this operation on a closed dataset
+EOleException 28.01.2015 20:07:29 - admin     - spBIP2: Type mismatch for field 'isDeb', expecting: Boolean actual: Integer
+EDatabaseError 29.01.2015 16:51:51 - admin     - cdsBJTree: Cannot perform this operation on a closed dataset
+EDatabaseError 29.01.2015 16:51:55 - admin     - cdsBJTree: Cannot perform this operation on a closed dataset
+EDatabaseError 29.01.2015 16:52:04 - admin     - cdsBJTree: Cannot perform this operation on a closed dataset
+EDatabaseError 29.01.2015 16:52:11 - admin     - cdsBJTree: Cannot perform this operation on a closed dataset
+EDatabaseError 29.01.2015 16:52:21 - admin     - cdsBJTree: Cannot perform this operation on a closed dataset
+EDatabaseError 29.01.2015 16:52:25 - admin     - cdsBJTree: Cannot perform this operation on a closed dataset
+EDatabaseError 29.01.2015 16:52:37 - admin     - cdsBJTree: Cannot perform this operation on a closed dataset
+EDatabaseError 29.01.2015 16:52:39 - admin     - cdsBJTree: Cannot perform this operation on a closed dataset
+EDatabaseError 29.01.2015 16:52:42 - admin     - cdsBJTree: Cannot perform this operation on a closed dataset
+EDatabaseError 29.01.2015 16:53:07 - brio brio  - cdsBJTree: Cannot perform this operation on a closed dataset
+EConvertError 29.01.2015 21:01:18 - brio brio  - '1 500,00' is not a valid date
+EDatabaseError 29.01.2015 21:33:24 - brio brio  - cdsBJTree: Cannot perform this operation on a closed dataset
+Exception 12.02.2015 15:19:06 - admin     - Перенос невозможен!!!
+Exception 12.02.2015 15:19:47 - admin     - Перенос невозможен!!!
+Exception 12.02.2015 15:20:02 - admin     - Перенос невозможен!!!
+Exception 25.02.2015 13:34:24 - admin     - Invalid column name 'id_FormalDistrib'
+Exception 25.02.2015 13:35:21 - admin     - Invalid column name 'CheckDate'
+EOleException 08.03.2015 21:29:22 - admin     - Время ожидания запроса истекло
+EAccessViolation 29.07.2015 23:17:59 - Бродягина Алена  - Access violation at address 008ABDE7 in module 'EManager_SNZ.exe'. Read of address 00000010
+EAccessViolation 29.07.2015 23:18:02 - Бродягина Алена  - Access violation at address 008ABDE7 in module 'EManager_SNZ.exe'. Read of address 00000010
+EAccessViolation 29.07.2015 23:18:22 - Бродягина Алена  - Access violation at address 008ABDE7 in module 'EManager_SNZ.exe'. Read of address 00000010
+EInvalidOp 29.10.2016 12:55:31 - admin     - Invalid floating point operation
+EInvalidOp 29.10.2016 12:57:57 - admin     - Invalid floating point operation
+EInvalidOp 29.10.2016 12:58:02 - admin     - Invalid floating point operation
+EStringListError 02.11.2016 19:34:26 - admin     - List index out of bounds (-1)
+EStringListError 08.11.2016 15:32:06 - admin     - List index out of bounds (-1)
+EStringListError 08.11.2016 15:33:17 - admin     - List index out of bounds (-1)
+EStringListError 08.11.2016 15:33:57 - admin     - List index out of bounds (-1)
+EStringListError 08.11.2016 15:39:17 - admin     - List index out of bounds (-1)
+EStringListError 08.11.2016 15:41:55 - admin     - List index out of bounds (-1)
+EStringListError 08.11.2016 16:03:09 - admin     - List index out of bounds (-1)
+EStringListError 08.11.2016 20:15:35 - admin     - List index out of bounds (-1)
+EConvertError 08.11.2016 20:20:19 - admin     - ' 100 000.00' is not a valid floating point value
+EConvertError 08.11.2016 20:20:46 - admin     - ' 150 000.00' is not a valid floating point value
+EConvertError 08.11.2016 20:21:28 - admin     - ' 100 000.00' is not a valid floating point value
+EConvertError 08.11.2016 20:23:43 - admin     - '150 000.00' is not a valid floating point value
+EConvertError 08.11.2016 20:26:49 - admin     - '20 585.60' is not a valid floating point value
+EConvertError 08.11.2016 20:29:44 - admin     - '10-10-2016 11:18' is not a valid date and time
+Exception 03.10.2017 17:52:58 - admin     - Provider not exported: dsDocUPD
+EInvalidOperation 08.10.2017 15:50:54 - admin     - Control 'ToolButtonSep13' has no parent window
+Exception 15.02.2018 11:25:18 - admin     - Unexpected expression after operator: >=1000 AND <=
+Exception 21.02.2018 20:38:10 - admin     - Provider not exported: dsDocUPD
+Exception 09.03.2018 22:21:31 - admin     - К сожалению, нам не удалось найти файл AF_Версия &1.xlt. Возможно, он был перемещен, переименован или удален?
+Exception 17.03.2018 17:05:41 - admin     - Procedure or function 'BJ_TreeGet_Det' expects parameter '@id_User', which was not supplied
+EOleException 17.03.2018 17:05:53 - admin     - Procedure or function 'RPT_NewRepTree' expects parameter '@id_User', which was not supplied
+Exception 17.03.2018 17:06:10 - admin     - Procedure or function 'RPT_NewRepTree' expects parameter '@id_User', which was not supplied
+Exception 17.03.2018 17:22:28 - admin     - Время ожидания запроса истекло
+Exception 17.03.2018 17:23:06 - admin     - Время ожидания запроса истекло
+Exception 17.03.2018 17:25:38 - admin     - Время ожидания запроса истекло
+Exception 17.03.2018 17:25:46 - admin     - spRPT_NewRepTree: CommandText does not return a result set
+Exception 17.03.2018 17:27:17 - admin     - The conversion of a varchar data type to a datetime data type resulted in an out-of-range value

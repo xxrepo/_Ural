@@ -1,0 +1,100 @@
+EOleException 05.07.2011 13:45:34 -  admin  - Cannot resolve collation conflict for UNION operation
+EOleException 05.07.2011 14:54:00 -  admin  - Ошибка при удалении - Невозможно удалить представителя. По нему были проведены операции!
+Exception 05.07.2011 14:59:59 -  admin  - Implicit conversion of varchar value to varchar cannot be performed because the collation of the value is unresolved due to a collation conflict
+Exception 05.07.2011 15:00:33 -  admin  - Implicit conversion of varchar value to varchar cannot be performed because the collation of the value is unresolved due to a collation conflict
+Exception 05.07.2011 17:56:12 -  admin  - spBalDet: CommandText does not return a result set
+Exception 05.07.2011 17:56:29 -  admin  - spBalDet: CommandText does not return a result set
+ESocketError 08.07.2011 18:48:58 -  Администратор  - Windows socket error: Удаленный хост принудительно разорвал существующее подключение (10054), on API 'recv'
+ESocketError 08.07.2011 18:48:58 -  Администратор  - Windows socket error: Удаленный хост принудительно разорвал существующее подключение (10054), on API 'recv'
+ESocketError 08.07.2011 19:01:26 -  Администратор  - Windows socket error: Удаленный хост принудительно разорвал существующее подключение (10054), on API 'recv'
+ESocketError 08.07.2011 19:01:26 -  Администратор  - Windows socket error: Удаленный хост принудительно разорвал существующее подключение (10054), on API 'recv'
+EOleException 09.07.2011 0:08:51 -  Администратор  - ADOQuery1: CommandText does not return a result set
+EOleException 09.07.2011 0:08:53 -  Администратор  - ADOQuery1: CommandText does not return a result set
+Exception 12.07.2011 10:28:46 -  Администратор  - Время ожидания истекло
+EOleException 31.07.2011 17:43:41 -  Администратор  - String or binary data would be truncated
+EOleException 31.07.2011 17:44:44 -  Администратор  - String or binary data would be truncated
+EOleException 31.07.2011 20:59:24 -  Администратор  - String or binary data would be truncated
+EListError 01.08.2011 0:18:14 -  Администратор  - List index out of bounds (14)
+EDatabaseError 01.08.2011 18:11:55 -  Администратор  - RxMemoryData1: Field 'Col_F' not found
+EOleException 01.08.2011 22:55:33 -  Администратор  - Cannot insert the value NULL into column 'TotalSum', table 'ACS_MBase2.dbo.BC_SessGoods'; column does not allow nulls. INSERT fails
+EOleException 01.08.2011 23:01:13 -  Администратор  - Этот файл уже залит!
+EOleException 02.08.2011 23:53:17 -  Администратор  - Этот файл уже залит!
+EOleException 10.08.2011 18:59:42 -  Администратор  - Этот файл уже залит!
+Exception 10.08.2011 22:49:58 -  Администратор  - не выбран бизнес
+Exception 10.08.2011 23:10:21 -  Администратор  - Не выбран бизнес
+EOleException 10.08.2011 23:29:53 -  Администратор  - spArc2: Field 'id_Oper' not found
+EAccessViolation 28.11.2011 13:41:56 - admin     - Access violation at address 004BB66D in module 'EManager.exe'. Read of address 00000005
+EInvalidCast 28.11.2011 16:35:22 - admin     - Invalid class typecast
+EInvalidCast 28.11.2011 16:38:43 - admin     - Invalid class typecast
+EInvalidCast 28.11.2011 16:42:38 - admin     - Invalid class typecast
+EInvalidCast 28.11.2011 16:42:43 - admin     - Invalid class typecast
+EInvalidCast 28.11.2011 16:42:45 - admin     - Invalid class typecast
+EInvalidCast 28.11.2011 17:13:47 - admin     - Invalid class typecast
+EInvalidCast 28.11.2011 17:18:02 - admin     - Invalid class typecast
+EConvertError 28.11.2011 17:59:42 - admin     - '1 000,00' is not a valid floating point value
+EConvertError 28.11.2011 18:02:21 - admin     - '1 565,70' is not a valid floating point value
+EConvertError 28.11.2011 18:02:29 - admin     - '1 565,70' is not a valid floating point value
+EConvertError 28.11.2011 18:02:53 - admin     - '1 565,70' is not a valid floating point value
+EConvertError 28.11.2011 18:03:00 - admin     - '1 565,70' is not a valid floating point value
+EConvertError 28.11.2011 18:10:13 - admin     - '1 548,70' is not a valid floating point value
+EConvertError 28.11.2011 18:11:52 - admin     - '1 548,70' is not a valid floating point value
+EConvertError 28.11.2011 18:12:02 - admin     - '1 548,70' is not a valid floating point value
+EStringListError 28.11.2011 23:36:38 - admin     - List index out of bounds (-1)
+EAccessViolation 21.12.2011 11:53:15 - admin     - Access violation at address 00747085 in module 'EManager.exe'. Read of address 00000024
+EAccessViolation 21.12.2011 11:53:37 - admin     - Access violation at address 00747085 in module 'EManager.exe'. Read of address 00000024
+EAccessViolation 21.12.2011 11:53:48 - admin     - Access violation at address 00747085 in module 'EManager.exe'. Read of address 00000024
+EAccessViolation 21.12.2011 11:53:54 - admin     - Access violation at address 00747085 in module 'EManager.exe'. Read of address 00000024
+EAccessViolation 21.12.2011 11:54:04 - admin     - Access violation at address 00747085 in module 'EManager.exe'. Read of address 00000024
+EAccessViolation 21.12.2011 11:54:50 - admin     - Access violation at address 00747085 in module 'EManager.exe'. Read of address 00000024
+EAccessViolation 21.12.2011 11:55:17 - admin     - Access violation at address 00747085 in module 'EManager.exe'. Read of address 00000024
+EAccessViolation 21.12.2011 11:56:49 - admin     - Access violation at address 00747085 in module 'EManager.exe'. Read of address 00000024
+EOleException 10.02.2012 13:58:54 - admin     - UPDATE statement conflicted with COLUMN FOREIGN KEY constraint 'FK_Dic_Measure_Dic_business'. The conflict occurred in database 'ACS_MBase', table 'Dic_business', column 'id_business'
+EListError 10.02.2012 14:10:04 - admin     - List index out of bounds (13)
+EListError 10.02.2012 14:10:12 - admin     - List index out of bounds (13)
+EOleException 13.02.2012 14:11:57 - admin     - Procedure 'Inv_ProjectGetList' expects parameter '@id_business', which was not supplied
+EAccessViolation 14.02.2012 11:37:02 - admin     - Access violation at address 004BB821 in module 'EManager.exe'. Read of address 00000005
+EListError 14.02.2012 15:34:15 - admin     - List index out of bounds (-1)
+EInvalidOperation 14.02.2012 16:19:01 - admin     - Control 'cbOperVid' has no parent window
+EAccessViolation 14.02.2012 16:24:10 - admin     - Access violation at address 0000004D. Read of address 0000004D
+EAccessViolation 14.02.2012 16:25:29 - admin     - Access violation at address 0000004D. Read of address 0000004D
+EAccessViolation 14.02.2012 16:25:30 - admin     - Access violation at address 0000004D. Read of address 0000004D
+EAccessViolation 14.02.2012 16:25:31 - admin     - Access violation at address 0000004D. Read of address 0000004D
+EAccessViolation 14.02.2012 16:25:32 - admin     - Access violation at address 0000004D. Read of address 0000004D
+EAccessViolation 14.02.2012 16:25:33 - admin     - Access violation at address 0000004D. Read of address 0000004D
+EAccessViolation 14.02.2012 16:25:36 - admin     - Access violation at address 0000004D. Read of address 0000004D
+EAccessViolation 14.02.2012 16:27:58 - admin     - Access violation at address 00000011. Read of address 00000011
+EAccessViolation 14.02.2012 16:29:59 - admin     - Access violation at address 0000004D. Read of address 0000004D
+EDatabaseError 16.02.2012 16:07:59 - admin     - '56,58,26' is not a valid floating point value for field 'SummOper_F'
+EVariantError 01.03.2012 10:39:58 - admin     - Invalid variant operation
+Exception 11.03.2012 16:10:11 - admin     - Неверный индекс
+EWin32Error 27.04.2012 17:47:48 - admin     - Win32 Error.  Code: 1400.
+Недопустимый дескриптор окна
+Exception 06.06.2012 10:15:53 - admin     - Cannot insert the value NULL into column 'Disabled', table 'ACS_MBase.dbo.Doc_FinalAct'; column does not allow nulls. INSERT fails
+Exception 06.06.2012 10:16:21 - admin     - Cannot insert the value NULL into column 'Disabled', table 'ACS_MBase.dbo.Doc_FinalAct'; column does not allow nulls. INSERT fails
+Exception 06.06.2012 10:16:54 - admin     - Cannot insert the value NULL into column 'Doc_DateCreate', table 'ACS_MBase.dbo.Doc_FinalAct'; column does not allow nulls. INSERT fails
+EComponentError 23.06.2012 11:15:20 - admin     - A component named RxSpeedButton1 already exists
+Exception 26.06.2012 17:57:31 - admin     - spDoc_PayIn: Field 'Summ' not found
+EVariantError 03.07.2012 17:15:54 - admin     - Invalid variant type conversion
+Exception 03.07.2012 17:16:01 - admin     - Ошибка при сохранении свойств
+Exception 03.07.2012 17:30:58 - admin     - spDoc_PayIn: Field 'Summ' not found
+Exception 08.04.2013 16:32:31 - admin     - В этой группе есть товар, удаление невозможно. Сначала удалите товары.
+EDatabaseError 30.09.2013 14:57:00 - admin     - mdBuff: Cannot perform this operation on a closed dataset
+EListError 06.06.2014 15:15:11 - admin     - List index out of bounds (9)
+EListError 06.06.2014 15:15:50 - admin     - List index out of bounds (9)
+EAccessViolation 06.06.2014 20:11:56 - admin     - Access violation at address 00961DB5 in module 'EManager.exe'. Read of address 00000008
+EAccessViolation 06.06.2014 20:12:00 - admin     - Access violation at address 00961DB5 in module 'EManager.exe'. Read of address 00000008
+EOutOfResources 29.10.2014 10:09:21 - admin     - Out of system resources
+EOleException 04.11.2015 12:17:14 - admin     - Ошибка при удалении - Невозможно удалить товар. По нему были проведены операции!
+EAccessViolation 15.12.2015 11:40:17 - admin     - Access violation at address 00B1262E in module 'EManager.exe'. Read of address 00000000
+EOleSysError 15.12.2015 14:16:25 - admin     - Вызов был отклонен
+EOleException 18.12.2015 13:10:04 - kkk kkk kkk - Ошибка при удалении - Невозможно удалить товар. По нему были проведены операции!
+EDatabaseError 29.05.2016 10:46:07 - 12 Администратор  - '345к' is not a valid floating point value for field 'BIK'
+Exception 29.05.2016 10:46:19 - 12 Администратор  - Ошибка при сохранении
+Exception 29.05.2016 12:15:40 - 12 Администратор  - Invalid variant type conversion
+Exception 29.05.2016 12:15:58 - 12 Администратор  - Invalid variant type conversion
+Exception 29.05.2016 12:17:13 - 12 Администратор  - Invalid variant type conversion
+Exception 29.05.2016 12:17:36 - 12 Администратор  - Invalid variant type conversion
+Exception 03.10.2017 17:54:19 - admin     - Procedure or function 'Doc_UPDUnEdit' expects parameter '@id_business', which was not supplied
+Exception 03.10.2017 17:55:54 - admin     - Cannot insert the value NULL into column 'Doc_DateCreate', table 'ACS_Mbase.dbo.Doc_UPD'; column does not allow nulls. INSERT fails
+Exception 03.10.2017 17:56:10 - admin     - Cannot insert the value NULL into column 'Disabled', table 'ACS_Mbase.dbo.Doc_UPD'; column does not allow nulls. INSERT fails
+Exception 05.10.2017 21:16:06 - admin     - К сожалению, нам не удалось найти файл AF_old.xlt. Возможно, он был перемещен, переименован или удален?

@@ -1,0 +1,148 @@
+unit uSettings;
+     // Форма - Настройки программы
+
+interface
+
+uses
+  Windows, Messages, SysUtils, Classes, Graphics, Controls, Forms, Dialogs,
+  StdCtrls, ExtCtrls, RXSpin, foMyFunc, registry, Mask, ToolEdit, CurrEdit, inifiles,
+  sLabel, sMaskEdit, sCustomComboEdit, sTooledit;
+
+type
+  TSettings = class(TForm)
+    Panel2: TPanel;
+    btnCancel: TButton;
+    btnOk: TButton;
+    Panel1: TPanel;
+    Label1: TLabel;
+    edServer: TEdit;
+    Label2: TLabel;
+    edPort: TCurrencyEdit;
+    Panel3: TPanel;
+    cbShowSplash: TCheckBox;
+    Button1: TButton;
+    deTmp: TsDirectoryEdit;
+    sLabel1: TsLabel;
+    edImgViewer: TsFilenameEdit;
+    sLabel2: TsLabel;
+    cbSkin: TCheckBox;
+    procedure edPortKeyPress(Sender: TObject; var Key: Char);
+    procedure Button1Click(Sender: TObject);
+  private
+    { Private declarations }
+  public
+    { Public declarations }
+  end;
+
+  procedure ChangeStng(AOnlyServer : boolean = false);
+var
+  Settings: TSettings;
+procedure SaveStng;
+
+implementation
+
+uses uDM, uMainForm, uPrgForm;
+
+procedure SaveStng;
+var Reg: TRegistry;
+    IniFile : TIniFile;
+    S : String;
+begin
+  Reg := TRegistry.Create;
+  S := ExpandFileName(ParamStr(0));
+  Delete(S, Length(S) - 2, 3);
+  S := S + 'ini';
+  IniFile := TIniFile.Create(S);
+  try
+    Reg.RootKey := HKEY_CURRENT_USER;
+    if Reg.OpenKey(SRegPath, true) then
+    begin
+      Reg.WriteBool('ShowSplash', ShowSplash);
+    end;
+    IniFile.WriteBool('AppServer', 'cbSkinVal', DM.cbSkinVal);
+    IniFile.WriteString('AppServer', 'HostName', DM.host);
+    IniFile.WriteString('AppServer', 'Port', DM.port);
+    SaveValToRegistry(DM.tmpFilePath, SRegPath, 'tmpFilePath');
+    SaveValToRegistry(DM.xImgViewer, SRegPath, 'xImgViewer');
+    IniFile.WriteString('Skin', 'SkinDirectory', DM.sSkinManager1.SkinDirectory);
+
+
+    if DM.sSkinManager1.Active then S := DM.sSkinManager1.SkinName else S := 'нет';
+    IniFile.WriteString('Skin', 'SkinName', S);
+ 
+  finally
+    Reg.CloseKey;
+    Reg.Free;
+    IniFile.Free;
+  end;
+end;
+
+procedure ChangeStng(AOnlyServer : boolean);
+var F : TSettings;
+begin
+  F := TSettings.Create(nil);
+  try
+    F.cbShowSplash.Checked := ShowSplash;
+    F.edServer.Text := DM.host;
+    F.edPort.Text := DM.port;
+    F.deTmp.Text := DM.tmpFilePath;
+    F.edImgViewer.Text := DM.xImgViewer;
+    F.cbSkin.Checked := DM.cbSkinVal;
+
+    if AOnlyServer then
+    begin
+      F.Panel3.Visible := false;
+      F.Height := F.Panel1.Height + F.Panel2.Height + 27;
+    end;
+    F.ShowModal;
+    if F.ModalResult = mrOk then
+    begin
+
+      ShowSplash := F.cbShowSplash.Checked;
+
+      DM.cbSkinVal := F.cbSkin.Checked;
+      DM.host := F.edServer.Text;
+      DM.port := F.edPort.Text;
+      DM.tmpFilePath := F.deTmp.Text;
+      DM.xImgViewer := F.edImgViewer.Text;
+      SaveStng;
+ // DM.rsCA.ComputerName := F.edServer.text;
+  DM.rsCA.Host := F.edServer.text;
+      if AOnlyServer then
+      begin
+        DM.rsCA.Close;
+      end;
+    end;
+  finally
+    F.Free;
+  end;  
+end;
+
+
+{$R *.DFM}
+
+procedure TSettings.edPortKeyPress(Sender: TObject; var Key: Char);
+begin
+  if (Key = '.') or (Key = ',') then
+    Key := #0;
+end;
+
+procedure TSettings.Button1Click(Sender: TObject);
+begin
+  DM.rsCA.Host := edServer.text;
+  try
+    ShowProgressForm(Handle, -1, -1, 'Идет установка соединения...');
+    DM.rsCA.open;
+    DM.rsCA.Close;
+    CloseProgressForm;
+    ShowMessage('Тест - OK');
+  except
+    on E : Exception do
+    begin
+      CloseProgressForm;
+      ShowMessage('Ошибка ' + E.Message);
+    end;
+  end;
+end;
+
+end.

@@ -1,0 +1,39 @@
+object Dic: TDic
+  Left = 349
+  Top = 125
+  Width = 1109
+  Height = 728
+  Caption = 'Documents'
+  Color = clBtnFace
+  Font.Charset = DEFAULT_CHARSET
+  Font.Color = clWindowText
+  Font.Height = -11
+  Font.Name = 'MS Sans Serif'
+  Font.Style = []
+  FormStyle = fsMDIChild
+  KeyPreview = True
+  OldCreateOrder = False
+  Position = poDefault
+  Scaled = False
+  Visible = True
+  WindowState = wsMaximized
+  OnClose = FormClose
+  OnDestroy = FormDestroy
+  PixelsPerInch = 96
+  TextHeight = 13
+  inline fGrp1: TfGrp
+    Width = 1101
+    Height = 701
+    Align = alClient
+    inherited ToolBar1: TToolBar
+      Width = 1101
+      inherited Button3: TButton
+        OnClick = fGrp1Button3Click
+      end
+    end
+    inherited OrgTreeView: TTreeView
+      Width = 1101
+      Height = 672
+    end
+  end
+end

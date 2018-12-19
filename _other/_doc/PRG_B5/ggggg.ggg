@@ -1,0 +1,304 @@
+item
+EndEllipsis = True
+FieldName = 'ID_DOCBASE'
+Footers = <>
+Title.Caption = 'Документ|ID_DOCBASE'
+Title.EndEllipsis = True
+Title.TitleButton = True
+end
+item
+EndEllipsis = True
+FieldName = 'NAME'
+Footers = <>
+Title.Caption = 'Документ|Документ'
+Title.EndEllipsis = True
+Title.TitleButton = True
+end
+item
+EndEllipsis = True
+FieldName = 'NUM'
+Footers = <>
+Title.Caption = 'Документ|Номер'
+Title.EndEllipsis = True
+Title.TitleButton = True
+end
+item
+EndEllipsis = True
+FieldName = 'DATECREATE'
+Footers = <>
+Title.Caption = 'Документ|Создан'
+Title.EndEllipsis = True
+Title.TitleButton = True
+end
+item
+EndEllipsis = True
+FieldName = 'DOCDATE'
+Footers = <>
+Title.Caption = 'Документ|Дата документа'
+Title.EndEllipsis = True
+Title.TitleButton = True
+end
+item
+EndEllipsis = True
+FieldName = 'DTName'
+Footers = <>
+Title.Caption = 'Документ|Тип документа'
+Title.EndEllipsis = True
+Title.TitleButton = True
+end
+item
+EndEllipsis = True
+FieldName = 'DOCCOMMENT2'
+Footers = <>
+Title.Caption = 'Документ|Описание документа'
+Title.EndEllipsis = True
+Title.TitleButton = True
+end
+item
+EndEllipsis = True
+FieldName = 'DateClosed'
+Footers = <>
+Title.Caption = 'Документ|Закрыт'
+Title.EndEllipsis = True
+Title.TitleButton = True
+end
+item
+EndEllipsis = True
+FieldName = 'RepName'
+Footers = <>
+Title.Caption = 'Заказчик|Юр. лицо 2'
+Title.EndEllipsis = True
+Title.TitleButton = True
+end
+item
+EndEllipsis = True
+FieldName = 'RepNameParent'
+Footers = <>
+Title.Caption = 'Заказчик|Клиент'
+Title.EndEllipsis = True
+Title.TitleButton = True
+end
+item
+EndEllipsis = True
+FieldName = 'OrgName'
+Footers = <>
+Title.Caption = 'Оператор|Юр. лицо 1'
+Title.EndEllipsis = True
+Title.TitleButton = True
+end
+item
+EndEllipsis = True
+FieldName = 'OrgNameParent'
+Footers = <>
+Title.Caption = 'Оператор|Оператор'
+Title.EndEllipsis = True
+Title.TitleButton = True
+end
+item
+EndEllipsis = True
+FieldName = 'EV_Date'
+Footers = <>
+Title.Caption = 'Состояние|Дата события'
+Title.EndEllipsis = True
+Title.TitleButton = True
+end
+item
+EndEllipsis = True
+FieldName = 'EventTypeName'
+Footers = <>
+Title.Caption = 'Состояние|Вид события'
+Title.EndEllipsis = True
+Title.TitleButton = True
+end
+item
+EndEllipsis = True
+FieldName = 'EV_EventComment'
+Footers = <>
+Title.Caption = 'Состояние|Описание события'
+Title.EndEllipsis = True
+Title.TitleButton = True
+end
+item
+EndEllipsis = True
+FieldName = 'ID_DOCTYPE'
+Footers = <>
+Title.Caption = 'Документ|ID_DOCTYPE'
+Title.EndEllipsis = True
+Title.TitleButton = True
+end
+item
+EndEllipsis = True
+FieldName = 'ID_CA'
+Footers = <>
+Title.Caption = 'Документ|ID_CA'
+Title.EndEllipsis = True
+Title.TitleButton = True
+end
+item
+EndEllipsis = True
+FieldName = 'DELETED'
+Footers = <>
+Title.Caption = 'Документ|DELETED'
+Title.EndEllipsis = True
+Title.TitleButton = True
+end
+item
+EndEllipsis = True
+FieldName = 'SUMM'
+Footers = <>
+Title.Caption = 'Информация|Сумма'
+Title.EndEllipsis = True
+Title.TitleButton = True
+end
+item
+EndEllipsis = True
+FieldName = 'CurName'
+Footers = <>
+Title.Caption = 'Информация|Валюта'
+Title.EndEllipsis = True
+Title.TitleButton = True
+end
+item
+EndEllipsis = True
+FieldName = 'ID_CUR'
+Footers = <>
+Title.Caption = 'Информация|ID_CUR'
+Title.EndEllipsis = True
+Title.TitleButton = True
+end
+item
+EndEllipsis = True
+FieldName = 'id_REP'
+Footers = <>
+Title.Caption = 'Информация|id_REP'
+Title.EndEllipsis = True
+Title.TitleButton = True
+end
+item
+EndEllipsis = True
+FieldName = 'Amount'
+Footers = <>
+Title.Caption = 'Информация|Кол-во экз.'
+Title.EndEllipsis = True
+Title.TitleButton = True
+end
+item
+EndEllipsis = True
+FieldName = 'COL10'
+Footers = <>
+Title.Caption = 'Документ|COL10'
+Title.EndEllipsis = True
+Title.TitleButton = True
+end
+item
+EndEllipsis = True
+FieldName = 'COL9'
+Footers = <>
+Title.Caption = 'Документ|COL9'
+Title.EndEllipsis = True
+Title.TitleButton = True
+end
+item
+EndEllipsis = True
+FieldName = 'COL8'
+Footers = <>
+Title.Caption = 'Документ|COL8'
+Title.EndEllipsis = True
+Title.TitleButton = True
+end
+item
+EndEllipsis = True
+FieldName = 'COL7'
+Footers = <>
+Title.Caption = 'Документ|COL7'
+Title.EndEllipsis = True
+Title.TitleButton = True
+end
+item
+EndEllipsis = True
+FieldName = 'COL6'
+Footers = <>
+Title.Caption = 'Документ|COL6'
+Title.EndEllipsis = True
+Title.TitleButton = True
+end
+item
+EndEllipsis = True
+FieldName = 'COL5'
+Footers = <>
+Title.Caption = 'Документ|COL5'
+Title.EndEllipsis = True
+Title.TitleButton = True
+end
+item
+EndEllipsis = True
+FieldName = 'COL4'
+Footers = <>
+Title.Caption = 'Документ|COL4'
+Title.EndEllipsis = True
+Title.TitleButton = True
+end
+item
+EndEllipsis = True
+FieldName = 'COL3'
+Footers = <>
+Title.Caption = 'Документ|COL3'
+Title.EndEllipsis = True
+Title.TitleButton = True
+end
+item
+EndEllipsis = True
+FieldName = 'COL2'
+Footers = <>
+Title.Caption = 'Документ|COL2'
+Title.EndEllipsis = True
+Title.TitleButton = True
+end
+item
+EndEllipsis = True
+FieldName = 'COL1'
+Footers = <>
+Title.Caption = 'Документ|COL1'
+Title.EndEllipsis = True
+Title.TitleButton = True
+end
+item
+EndEllipsis = True
+FieldName = 'HasFormPrint'
+Footers = <>
+Title.Caption = 'Информация|Есть печатная форма'
+Title.EndEllipsis = True
+Title.TitleButton = True
+end
+item
+EndEllipsis = True
+FieldName = 'HasFormEl'
+Footers = <>
+Title.Caption = 'Информация|Есть электронная форма'
+Title.EndEllipsis = True
+Title.TitleButton = True
+end
+item
+EndEllipsis = True
+FieldName = 'RedDate'
+Footers = <>
+Title.Caption = 'Документ|RedDate'
+Title.EndEllipsis = True
+Title.TitleButton = True
+end
+item
+EndEllipsis = True
+FieldName = 'id_EventType'
+Footers = <>
+Title.Caption = 'Документ|id_EventType'
+Title.EndEllipsis = True
+Title.TitleButton = True
+end
+item
+EndEllipsis = True
+FieldName = 'XDay'
+Footers = <>
+Title.Caption = 'Документ|Дней без движения'
+Title.EndEllipsis = True
+Title.TitleButton = True
+end

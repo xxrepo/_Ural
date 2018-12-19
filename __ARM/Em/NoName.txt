@@ -1,0 +1,345 @@
+function zz (V : OleVariant)  : TP;
+var P : pointer;
+begin
+  P := VarArrayLock(V);
+  Move(P^, Result, sizeOf(TP));
+  VarArrayUnlock(V);
+end;
+
+function rr (A : TP) : Variant;
+var P : pointer;
+begin
+  Result := VarArrayCreate([0, sizeOf(TP)], varByte);
+  P := VarArrayLock(Result);
+  Move(A, P^, sizeOf(A));
+  VarArrayUnlock(Result);
+end;
+
+
+
+CREATE PROCEDURE LC_OP_OperGetProp_v2
+  @id_LC_Oper INT,
+  @is_Mirr BIT = 0
+
+AS
+SELECT 
+ OC.id_LC_Oper, 
+ DateLocal = OC.DateLocal ,--+ CASE WHEN OC.is_Mirr = 1 THEN 0.000001 ELSE 0 END,
+ OC.OperVid,
+ OC.id_UserCreator,
+ CreatorFIO= UCr.LastName + ' ' + UCr.FirstName + ' ' + UCr.MiddleName, 
+ OC.id_business, Id_CurrencyBsn = B.id_Currency,
+ BusinessName = B.Name, BusinessNum = B.Num,
+ OC.DateLocal, OC.Correct, OC.OperTypeIn,
+ OC.Id_CurrencyOper, 
+ CurrencyOperName = COper.Name, CurrencyOperShortName = COper.ShortName,
+ PriceOper = PriceFinOper, 
+ 
+ OC.Id_CurrencySys, 
+ CurrencySysName = CSys.Name, CurrencySysShortName = CSys.ShortName,
+ SummSys=OC.SummSysFin, 
+ OC.id_Acc,
+ OC.id_Warehouse, 
+ OC.id_Manufact, 
+ SrcName = COALESCE(ASrc.Name, WHSrc.Name, MnSrc.Name),
+ SrcID_Main = COALESCE(ASrc.ID_Main, WHSrc.ID_Main, MnSrc.ID_Main),
+
+ OC.id_Repr, 
+ OC.id_Acc_Ext,
+ OC.id_Warehouse_Ext,
+ OC.id_Manufact_Ext, 
+ ReprName = COALESCE(
+       ADest.Name, WHDest.Name, MnDest.Name, CR.Name),
+ ReprID_Main = COALESCE(
+       ADest.ID_Main, WHDest.ID_Main, MnDest.ID_Main,
+ CR.ID_Main
+),
+ OC.Koeff,
+  KoeffName = CAST(
+  CASE
+    WHEN OC.Koeff = -1 THEN 'Затрата'
+    WHEN OC.Koeff = 0 THEN 'Расчет с контрагентом'
+    WHEN OC.Koeff = 1 THEN 'Прибыль'
+  END AS VARCHAR(50)),
+  OC.CheckDate,
+/* OC.id_FormalDistrib,
+ FormalDistribName = FrmD.Name, 
+ OC.id_FuncDistrib,
+ FuncDistribName = FncD.Name,*/
+  SummOper = PriceFinOper, 
+ TypeName = CAST(CASE WHEN OC.OperTypeIn = 1 THEN 'Приход' ELSE 'Расход' END AS VARCHAR(30)),
+HasViza = CAST(CASE WHEN OC.CheckDate IS NULL THEN 0 ELSE 1 END AS BIT),
+id_DocType,
+Imp_PayBasic, AccInv_PayAssignment, Contract,
+OperCrnName = ISNULL(CBsn.ShortName, CBsn.Name),  
+CurrencyBsnName = ISNULL(CBsn.ShortName, CBsn.Name),
+OC.OpComment, 
+OperTypeSIGN = CASE WHEN OperTypeIn = 1 THEN 1 ELSE -1 END,
+-- Проверяем наличие редакций
+HasChild = CAST(0 AS INT),
+Dig1, 
+Dig2, 
+Dig3, 
+Dig4, 
+Dig5, 
+Dig6, 
+Dig7, 
+Dig8,
+Dig9, 
+Dig10,
+Dig11, 
+Dig12,
+Dig13, 
+Dig14, 
+Dig15,
+
+Str1, 
+Str2, 
+Str3, 
+Str4, 
+Str5, 
+Str6, 
+Str7, 
+Str8,
+Str9, 
+Str10,
+Str11, 
+Str12,
+Str13, 
+Str14, 
+Str15,
+/*
+Date1, 
+Date2, 
+Date3, 
+Date4, 
+Date5, 
+Date6, 
+Date7, 
+Date8,
+Date9, 
+Date10,
+Date11, 
+Date12,
+Date13, 
+Date14, 
+Date15,*/
+OperVidName = CAST(
+  CASE
+    WHEN OC.OperVid = -1 THEN 'Курс. '
+    WHEN OC.OperVid = 0 THEN ' Пустая'
+    WHEN OC.OperVid = 1 THEN ' Складская'
+    WHEN OC.OperVid = 2 THEN ' Финансовая'
+    WHEN OC.OperVid = 3 THEN ' Услуги'
+    WHEN OC.OperVid = 4 THEN ' Взаимозачет'
+
+    WHEN OC.OperVid = 101 THEN ' Складская-ост.'
+    WHEN OC.OperVid = 102 THEN ' Финансовая-ост.'
+    WHEN OC.OperVid = 103 THEN ' Услуги-ост.'
+
+    WHEN OC.OperVid = 201 THEN ' Резерв'
+  END AS VARCHAR(50))
+,
+--is_Mirr,
+id_Acc_Group = ISNULL(ASrc.id_Acc_Group, -1),
+id_Warehouse_Group = ISNULL(WHSrc.id_Warehouse_Group, -1),
+id_Manufact_Group = ISNULL(MnSrc.id_Manufact_Group, -1)
+FROM LC_OP_Oper2 OC (NOLOCK)
+JOIN Dic_business B (NOLOCK) ON B.id_business = OC.id_business
+JOIN VW_Currency CBsn (NOLOCK) ON B.id_Currency = CBsn.id_Currency
+
+LEFT JOIN VW_Currency COper (NOLOCK) ON COper.Id_Currency = OC.Id_CurrencyOper
+LEFT JOIN VW_Currency CSys (NOLOCK) ON CSys.Id_Currency = OC.Id_CurrencySys
+
+LEFT JOIN USR_User UCr (NOLOCK) ON UCr.id_User = OC.id_UserCreator -- Создатель
+
+-- Источники
+LEFT JOIN Acc_Acc ASrc (NOLOCK) ON ASrc.id_Acc = OC.id_Acc
+LEFT JOIN WH_Warehouse WHSrc (NOLOCK) ON WHSrc.id_Warehouse = OC.id_Warehouse
+LEFT JOIN Mn_Manufact MnSrc (NOLOCK) ON MnSrc.id_Manufact = OC.id_Manufact
+
+-- Получатели
+LEFT JOIN VW_CA_Repr CR (NOLOCK) ON CR.id_Repr = OC.id_Repr
+LEFT JOIN Acc_Acc ADest (NOLOCK) ON ADest.id_Acc = OC.id_Acc_Ext
+LEFT JOIN WH_Warehouse WHDest (NOLOCK) ON WHDest.id_Warehouse = OC.id_Warehouse_Ext
+LEFT JOIN Mn_Manufact MnDest (NOLOCK) ON MnDest.id_Manufact = OC.id_Manufact_Ext
+
+/*
+-- Дополнительные атрибуты
+LEFT JOIN OP_FormalDistrib FrmD (NOLOCK) ON FrmD.id_FormalDistrib = OC.id_FormalDistrib
+LEFT JOIN OP_FuncDistrib FncD (NOLOCK) ON FncD.id_FuncDistrib = OC.id_FuncDistrib*/
+WHERE OC.id_LC_Oper = @id_LC_Oper/*
+AND is_Mirr = ISNULL(@is_Mirr, 0)*/
+GO
+
+
+
+
+
+CREATE PROCEDURE OP_OperGetProp_v2
+  @id_Oper INT = 0,
+  @is_Mirr BIT = 0
+AS
+SELECT 
+ OC.id_Oper, OC.id_OperParent,
+  OC.id_old_Oper, DateCreate = OC.DateCreate + CASE WHEN OC.is_Mirr = 1 THEN 0.000001 ELSE 0 END,
+ OC.id_LC_Oper, OC.OperVid,
+ OC.id_UserCreator,
+ CreatorFIO= UCr.LastName + ' ' + UCr.FirstName + ' ' + UCr.MiddleName, 
+ OC.id_business, Id_CurrencyBsn = B.id_Currency,
+ BusinessName = B.Name, BusinessNum = B.Num,
+ OC.DateLocal, OC.Correct, OC.OperTypeIn,
+ OC.Id_CurrencyOper, 
+ CurrencyOperName = COper.Name, CurrencyOperShortName = COper.ShortName,
+ PriceOper = PriceFinOper, OC.RateOper,
+ 
+ OC.Id_CurrencySys, 
+ CurrencySysName = CSys.Name, CurrencySysShortName = CSys.ShortName,
+ SummSys=OC.SummSysFin, OC.RateSys, 
+ OC.id_Acc,
+ OC.id_Warehouse, 
+ OC.id_Manufact, 
+ SrcName = COALESCE(ASrc.Name, WHSrc.Name, MnSrc.Name),
+ SrcID_Main = COALESCE(ASrc.ID_Main, WHSrc.ID_Main, MnSrc.ID_Main),
+
+ OC.id_Repr, 
+ OC.id_Acc_Ext,
+ OC.id_Warehouse_Ext,
+ OC.id_Manufact_Ext, 
+ ReprName = COALESCE(
+       ADest.Name, WHDest.Name, MnDest.Name, CR.Name),
+ ReprID_Main = COALESCE(
+       ADest.ID_Main, WHDest.ID_Main, MnDest.ID_Main,
+ CR.ID_Main
+),
+ OC.Id_CurrencyInv, OC.RateInv,   
+CurrencyInvName = CInv.Name, CurrencyInvShortName = CInv.ShortName,
+ OC.Koeff,
+  KoeffName = CAST(
+  CASE
+    WHEN OC.Koeff = -1 THEN 'Затрата'
+    WHEN OC.Koeff = 0 THEN 'Расчет с контрагентом'
+    WHEN OC.Koeff = 1 THEN 'Прибыль'
+  END AS VARCHAR(50)),
+  OC.CheckDate,
+ OC.id_FormalDistrib,
+ FormalDistribName = FrmD.Name, 
+ OC.id_FuncDistrib,
+ FuncDistribName = FncD.Name,
+ Deleted = OC.Deleted,
+ id_ContrAgent = ISNULL(CR.id_ContrAgent, id_ContrAgent_ex),
+  ContrAgentName = CASE WHEN ISNULL(OC.id_Repr, OC.id_ContrAgent_Ex) IS NULL THEN NULL ELSE CA.Name END, 
+  CA.id_CAGroup,
+  SummOper = PriceFinOper, 
+ TypeName = CAST(CASE WHEN OC.OperTypeIn = 1 THEN 'Приход' ELSE 'Расход' END AS VARCHAR(30)),
+HasViza = CAST(CASE WHEN OC.CheckDate IS NULL THEN 0 ELSE 1 END AS BIT),
+OC.OperState,
+OC.HidedOper,
+OC.RateMain,
+OC.id_Repr_Ex, 
+
+id_DocType,
+Imp_PayBasic, AccInv_PayAssignment, Contract,
+OperCrnName = ISNULL(CBsn.ShortName, CBsn.Name),  
+Blocked, CurrencyBsnName = ISNULL(CBsn.ShortName, CBsn.Name),
+OC.OpComment, RealDataCreate,
+OperTypeSIGN = CASE WHEN OperTypeIn = 1 THEN 1 ELSE -1 END,
+-- Проверяем наличие редакций
+HasChild = CAST(0 AS INT),
+Dig1, 
+Dig2, 
+Dig3, 
+Dig4, 
+Dig5, 
+Dig6, 
+Dig7, 
+Dig8,
+Dig9, 
+Dig10,
+Dig11, 
+Dig12,
+Dig13, 
+Dig14, 
+Dig15,
+
+Str1, 
+Str2, 
+Str3, 
+Str4, 
+Str5, 
+Str6, 
+Str7, 
+Str8,
+Str9, 
+Str10,
+Str11, 
+Str12,
+Str13, 
+Str14, 
+Str15,
+/*
+Date1, 
+Date2, 
+Date3, 
+Date4, 
+Date5, 
+Date6, 
+Date7, 
+Date8,
+Date9, 
+Date10,
+Date11, 
+Date12,
+Date13, 
+Date14, 
+Date15,*/
+OperVidName = CAST(
+  CASE
+    WHEN OC.OperVid = -1 THEN 'Курс. '
+    WHEN OC.OperVid = 0 THEN ' Пустая'
+    WHEN OC.OperVid = 1 THEN ' Складская'
+    WHEN OC.OperVid = 2 THEN ' Финансовая'
+    WHEN OC.OperVid = 3 THEN ' Услуги'
+    WHEN OC.OperVid = 4 THEN ' Взаимозачет'
+
+    WHEN OC.OperVid = 101 THEN ' Складская-ост.'
+    WHEN OC.OperVid = 102 THEN ' Финансовая-ост.'
+    WHEN OC.OperVid = 103 THEN ' Услуги-ост.'
+
+    WHEN OC.OperVid = 201 THEN ' Резерв'
+  END AS VARCHAR(50))
+,
+is_Mirr,
+id_Acc_Group = ISNULL(ASrc.id_Acc_Group, -1),
+id_Warehouse_Group = ISNULL(WHSrc.id_Warehouse_Group, -1),
+id_Manufact_Group = ISNULL(MnSrc.id_Manufact_Group, -1)
+FROM VW_Oper2 OC (NOLOCK)
+JOIN Dic_business B (NOLOCK) ON B.id_business = OC.id_business
+JOIN VW_Currency CBsn (NOLOCK) ON B.id_Currency = CBsn.id_Currency
+
+LEFT JOIN VW_Currency COper (NOLOCK) ON COper.Id_Currency = OC.Id_CurrencyOper
+LEFT JOIN VW_Currency CSys (NOLOCK) ON CSys.Id_Currency = OC.Id_CurrencySys
+LEFT JOIN VW_Currency CInv (NOLOCK) ON CInv.Id_Currency = OC.Id_CurrencyInv
+
+LEFT JOIN USR_User UCr (NOLOCK) ON UCr.id_User = OC.id_UserCreator -- Создатель
+
+-- Источники
+LEFT JOIN Acc_Acc ASrc (NOLOCK) ON ASrc.id_Acc = OC.id_Acc
+LEFT JOIN WH_Warehouse WHSrc (NOLOCK) ON WHSrc.id_Warehouse = OC.id_Warehouse
+LEFT JOIN Mn_Manufact MnSrc (NOLOCK) ON MnSrc.id_Manufact = OC.id_Manufact
+
+-- Получатели
+LEFT JOIN VW_CA_Repr CR (NOLOCK) ON CR.id_Repr = ISNULL(OC.id_Repr, id_Repr_Ex)
+LEFT JOIN Acc_Acc ADest (NOLOCK) ON ADest.id_Acc = OC.id_Acc_Ext
+LEFT JOIN WH_Warehouse WHDest (NOLOCK) ON WHDest.id_Warehouse = OC.id_Warehouse_Ext
+LEFT JOIN Mn_Manufact MnDest (NOLOCK) ON MnDest.id_Manufact = OC.id_Manufact_Ext
+
+-- Контрагент
+LEFT JOIN CA_ContrAgent CA (NOLOCK) ON CA.id_ContrAgent = ISNULL(CR.id_ContrAgent, id_ContrAgent_ex)
+
+-- Дополнительные атрибуты
+LEFT JOIN OP_FormalDistrib FrmD (NOLOCK) ON FrmD.id_FormalDistrib = OC.id_FormalDistrib
+LEFT JOIN OP_FuncDistrib FncD (NOLOCK) ON FncD.id_FuncDistrib = OC.id_FuncDistrib
+WHERE OC.id_Oper = @id_Oper
+AND is_Mirr = ISNULL(@is_Mirr, 0)
+GO

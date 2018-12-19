@@ -1,0 +1,80 @@
+var Buffer : PChar;
+    Len : DWORD;
+    CmpName : String;
+    i : integer;
+
+    IniFile : TIniFile;
+    S : String;
+    SL : TStringList;
+begin
+
+  //LogMessage('запуск');
+  CreateDate := Now;
+  SvcForm.AddRDM(Self);
+  tag := GetCurrentThreadId;
+  THackAdoDataSet(spBal_v2).CommandTimeout := tag;
+  
+//  THackAdoDataSet(DM.spArc2).CommandTimeout := 60*3;
+  THackAdoDataSet(spBJTree).CommandTimeout := 60*3;
+  THackAdoDataSet(spBal_v2).CommandTimeout := 60*3;
+  THackAdoDataSet(spMovGoods).CommandTimeout := 90;
+
+  Fid_User := Null;
+  for i := 0 to ComponentCount - 1 do
+  begin
+    if (Components[i] is TSQLUpdateDSProvider) and (Assigned(TSQLUpdateDSProvider(Components[i]))) then
+      TSQLUpdateDSProvider(Components[i]).OnUpdateError := SQLUpdateDSUpdateError;
+  end;
+
+  try
+    Len := 256;
+    Buffer := AllocMem(Len);
+    GetComputerName(Buffer, Len);
+    CmpName := StrPas(Buffer);
+  finally
+    FreeMem(Buffer, Len);
+  end;
+// ****************************************************************************
+  FBaseName := 'OVK';
+  FUserName := 'sa';
+  FPassword := 'trustnoone';
+  FDataBaseName := 'ACS_MBase';
+  
+  S := ExtractFilePath(ParamStr(0)) + 'Key.ack';
+  if  FileExists(S) then
+  begin
+    SL := TStringList.Create;
+    try
+      SL.Text := FileToStr(S);
+      with SL do
+      begin
+        FBaseName := Values['DB'];
+        FUserName := Values['UserName'];
+        FPassword := Values['Password'];
+      end;
+    finally
+      SL.Free;
+    end;
+  end
+  else
+  begin
+    S := ExpandFileName(ParamStr(0));
+    Delete(S, Length(S) - 2, 3);
+    S := S + 'ini';
+    if  FileExists(S) then
+    begin
+      IniFile := TIniFile.Create(S);
+      try
+        with IniFile do
+        begin
+          FBaseName := ReadString('Base', 'DB', '127.0.0.1');
+          FUserName := ReadString('Base', 'UserName', 'sa');
+          FPassword := ReadString('Base', 'Password', 'trustnoone');
+        end;
+      finally
+        IniFile.Free;
+      end;
+    end;
+  end;
+// ****************************************************************************
+//  LogMessage('запуск 222');

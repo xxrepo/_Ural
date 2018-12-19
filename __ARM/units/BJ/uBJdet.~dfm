@@ -1,0 +1,196 @@
+object BJdet: TBJdet
+  Left = 210
+  Top = 107
+  Width = 727
+  Height = 480
+  Caption = 'BJdet'
+  Color = clBtnFace
+  Font.Charset = DEFAULT_CHARSET
+  Font.Color = clWindowText
+  Font.Height = -11
+  Font.Name = 'MS Sans Serif'
+  Font.Style = []
+  OldCreateOrder = False
+  OnClose = FormClose
+  OnDestroy = FormDestroy
+  OnShow = FormShow
+  PixelsPerInch = 96
+  TextHeight = 13
+  inline fArcLite1: TfArcLite
+    Width = 719
+    Height = 412
+    Align = alClient
+    inherited ToolBar1: TToolBar
+      Width = 719
+    end
+    inherited RxDBGrid1: TDBGridEh
+      Width = 719
+      Height = 296
+    end
+    inherited ToolBar2: TToolBar
+      Width = 719
+    end
+    inherited Panel3: TPanel
+      Width = 719
+    end
+    inherited StatusBar1: TStatusBar
+      Top = 393
+      Width = 719
+    end
+  end
+  object Panel1: TPanel
+    Left = 0
+    Top = 412
+    Width = 719
+    Height = 41
+    Align = alBottom
+    Caption = ' '
+    TabOrder = 1
+    object btnCancel: TButton
+      Left = 633
+      Top = 9
+      Width = 75
+      Height = 25
+      Anchors = [akTop, akRight]
+      Cancel = True
+      Caption = 'Закрыть'
+      ModalResult = 2
+      TabOrder = 0
+      OnClick = btnCancelClick
+    end
+  end
+  object cdsBJDet: TClientDataSet
+    Aggregates = <>
+    Params = <
+      item
+        DataType = ftInteger
+        Name = '@RETURN_VALUE'
+        ParamType = ptResult
+      end
+      item
+        DataType = ftInteger
+        Name = '@id_BJ_Obj'
+        ParamType = ptInput
+      end
+      item
+        DataType = ftInteger
+        Name = '@id_Acc'
+        ParamType = ptInput
+      end
+      item
+        DataType = ftInteger
+        Name = '@id_ContrAgent'
+        ParamType = ptInput
+      end
+      item
+        DataType = ftInteger
+        Name = '@id_BJ_Item'
+        ParamType = ptInput
+      end
+      item
+        DataType = ftInteger
+        Name = '@id_Oper'
+        ParamType = ptInput
+      end
+      item
+        DataType = ftDateTime
+        Name = '@DateRep'
+        ParamType = ptInput
+      end>
+    ProviderName = 'dsBJDet'
+    RemoteServer = DM.rsCA
+    Left = 72
+    Top = 216
+  end
+  object cdsInvCalc: TClientDataSet
+    Aggregates = <>
+    Params = <
+      item
+        DataType = ftInteger
+        Name = '@RETURN_VALUE'
+        ParamType = ptResult
+      end
+      item
+        DataType = ftString
+        Name = '@OPComment'
+        ParamType = ptInput
+      end
+      item
+        DataType = ftInteger
+        Name = '@OrdN'
+        ParamType = ptInput
+      end
+      item
+        DataType = ftInteger
+        Name = '@id_Manufact'
+        ParamType = ptInput
+      end
+      item
+        DataType = ftBoolean
+        Name = '@OperTypeIn'
+        ParamType = ptInput
+      end
+      item
+        DataType = ftInteger
+        Name = '@Mode'
+        ParamType = ptInput
+      end>
+    ProviderName = 'dsInvCalc'
+    RemoteServer = DM.rsCA
+    Left = 232
+    Top = 248
+  end
+  object cdsBJDet2: TClientDataSet
+    Aggregates = <>
+    Params = <
+      item
+        DataType = ftInteger
+        Name = '@RETURN_VALUE'
+        ParamType = ptResult
+      end
+      item
+        DataType = ftInteger
+        Name = '@id_BJ_Obj'
+        ParamType = ptInput
+      end
+      item
+        DataType = ftInteger
+        Name = '@id_Acc'
+        ParamType = ptInput
+      end
+      item
+        DataType = ftInteger
+        Name = '@id_ContrAgent'
+        ParamType = ptInput
+      end
+      item
+        DataType = ftInteger
+        Name = '@id_BJ_Item'
+        ParamType = ptInput
+      end
+      item
+        DataType = ftInteger
+        Name = '@id_Oper'
+        ParamType = ptInput
+      end
+      item
+        DataType = ftDateTime
+        Name = '@DateRep'
+        ParamType = ptInput
+      end
+      item
+        DataType = ftDateTime
+        Name = '@DATE1'
+        ParamType = ptInput
+      end
+      item
+        DataType = ftDateTime
+        Name = '@DATE2'
+        ParamType = ptInput
+      end>
+    ProviderName = 'dsBJDet2'
+    RemoteServer = DM.rsCA
+    Left = 128
+    Top = 224
+  end
+end

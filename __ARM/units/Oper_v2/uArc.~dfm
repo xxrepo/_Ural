@@ -1,0 +1,142 @@
+object Arc: TArc
+  Left = 205
+  Top = 136
+  Width = 961
+  Height = 450
+  Caption = 'Архив операций'
+  Color = clBtnFace
+  Font.Charset = DEFAULT_CHARSET
+  Font.Color = clWindowText
+  Font.Height = -11
+  Font.Name = 'MS Sans Serif'
+  Font.Style = []
+  FormStyle = fsMDIChild
+  OldCreateOrder = False
+  Position = poScreenCenter
+  Scaled = False
+  Visible = True
+  WindowState = wsMaximized
+  OnClose = FormClose
+  OnDestroy = FormDestroy
+  PixelsPerInch = 96
+  TextHeight = 13
+  object pnDate: TPanel
+    Left = 0
+    Top = 0
+    Width = 953
+    Height = 29
+    Align = alTop
+    Caption = ' '
+    TabOrder = 0
+    object Label1: TLabel
+      Left = 296
+      Top = 8
+      Width = 45
+      Height = 13
+      Caption = 'Объект'
+      Font.Charset = DEFAULT_CHARSET
+      Font.Color = clWindowText
+      Font.Height = -11
+      Font.Name = 'MS Sans Serif'
+      Font.Style = [fsBold]
+      ParentFont = False
+    end
+    object edObjName: TEdit
+      Left = 503
+      Top = 5
+      Width = 179
+      Height = 21
+      ReadOnly = True
+      TabOrder = 0
+    end
+    object BitBtn1: TBitBtn
+      Left = 681
+      Top = 5
+      Width = 23
+      Height = 21
+      Caption = '...'
+      Font.Charset = DEFAULT_CHARSET
+      Font.Color = clWindowText
+      Font.Height = -11
+      Font.Name = 'MS Sans Serif'
+      Font.Style = [fsBold]
+      ParentFont = False
+      TabOrder = 1
+      OnClick = BitBtn1Click
+    end
+    object cbType: TComboBox
+      Left = 348
+      Top = 5
+      Width = 144
+      Height = 21
+      Style = csDropDownList
+      ItemHeight = 13
+      TabOrder = 2
+      OnChange = cbTypeChange
+    end
+    object Button1: TButton
+      Left = 718
+      Top = 5
+      Width = 89
+      Height = 21
+      Caption = 'Фильтровать'
+      TabOrder = 3
+      Visible = False
+      OnClick = Button1Click
+    end
+    inline fBsnSelector1: TfBsnSelector
+      Left = 1
+      Top = 1
+      Width = 273
+      Height = 27
+      Align = alLeft
+      TabOrder = 4
+      inherited edName: TEdit
+        Width = 187
+      end
+      inherited Button1: TButton
+        Left = 242
+        OnClick = fBsnSelector1Button1Click
+      end
+    end
+  end
+  inline fArc1: TfArc
+    Top = 29
+    Width = 953
+    Height = 394
+    Align = alClient
+    TabOrder = 1
+    inherited Splitter1: TSplitter
+      Height = 276
+    end
+    inherited ToolBar1: TToolBar
+      Width = 953
+    end
+    inherited pnDate: TPanel
+      Width = 953
+      inherited Panel3: TPanel
+        Width = 679
+      end
+    end
+    inherited RxDBGrid1: TDBGridEh
+      Width = 762
+      Height = 276
+    end
+    inherited ToolBar2: TToolBar
+      Width = 953
+    end
+    inherited StatusBar1: TStatusBar
+      Top = 375
+      Width = 953
+    end
+    inherited pnParam: TPanel
+      Height = 276
+      inherited fCnstItem1: TfCnstItem
+        Height = 243
+        inherited RxDBGrid1: TRxDBGrid
+          Height = 142
+        end
+      end
+    end
+  end
+end

@@ -1,0 +1,358 @@
+[
+  uuid(586E5A62-8BD7-4516-880F-E7681D0B8997), 
+  version(1.0), 
+  helpstring("svc_Dict Library")
+]
+library svc_Dict
+{
+
+  importlib("midas.dll");
+  importlib("stdole2.tlb");
+  importlib("STDVCL40.DLL");
+
+  [
+    uuid(ACDBA141-5AFC-4EA0-84E2-71947ABC7F66), 
+    version(1.0), 
+    helpstring("Dispatch interface for Dic Object"), 
+    dual, 
+    oleautomation
+  ]
+   interface IDic: IAppServer
+  {
+    [id(0x00000002)]
+    HRESULT _stdcall DoLogin([in] VARIANT UserName, [in] VARIANT Password, [out, retval] long * RetVal );
+    [id(0x00000001)]
+    HRESULT _stdcall CAGroup_Add([in] long id_Bsn, [in] VARIANT AName, [in] VARIANT_BOOL ShowInRoot, [out, retval] long * Param3 );
+    [id(0x00000003)]
+    HRESULT _stdcall CAGroup_Edit([in] long ID, [in] VARIANT AName, [in] VARIANT_BOOL ShowInRoot, [out, retval] long * Param3 );
+    [id(0x00000004)]
+    HRESULT _stdcall CAGroup_Del([in] long ID, [out, retval] long * Param2 );
+    [propget, id(0x00000005)]
+    HRESULT _stdcall id_User([out, retval] VARIANT * Value );
+    [propget, id(0x00000006)]
+    HRESULT _stdcall FIO([out, retval] VARIANT * Value );
+    [id(0x00000007)]
+    HRESULT _stdcall CurByID([in] VARIANT ID, [out] VARIANT * AName, [out] VARIANT * AShortName, [in] VARIANT * RateRBL, [out, retval] long * Param3 );
+    [id(0x00000008)]
+    HRESULT _stdcall ContrAgentAdd([in] VARIANT AName, [in] VARIANT id_business, [in] VARIANT id_CAGroup, [in] VARIANT_BOOL isOwn, [in] VARIANT Id_Currency, [in] VARIANT Addr, [in] VARIANT Descr, [in] VARIANT_BOOL ShowInRoot, [out, retval] long * Param7 );
+    [id(0x00000009)]
+    HRESULT _stdcall ContrAgentEdit([in] long id_ContrAgent, [in] VARIANT AName, [in] VARIANT id_business, [in] VARIANT id_CAGroup, [in] VARIANT_BOOL isOwn, [in] VARIANT_BOOL Disabled, [in] VARIANT Id_Currency, [in] VARIANT Addr, [in] VARIANT Descr, [in] VARIANT_BOOL ShowInRoot, [out, retval] long * Param7 );
+    [id(0x0000000A)]
+    HRESULT _stdcall BeginTruns( void );
+    [id(0x0000000B)]
+    HRESULT _stdcall CommitTrans( void );
+    [id(0x0000000C)]
+    HRESULT _stdcall RollbackTrans( void );
+    [id(0x0000000D)]
+    HRESULT _stdcall ReprAdd([in] VARIANT id_ContrAgent, [in] VARIANT_BOOL isJur, [in] VARIANT AName, [in] VARIANT FirstName, [in] VARIANT MiddleName, [in] VARIANT LastName, [in] VARIANT Id_Currency, [in] VARIANT_BOOL Disabled, [in] VARIANT Addr, [in] VARIANT Descr, [in] VARIANT id_Bsn_ex, [in] long NeedSend, [out, retval] long * Param10 );
+    [id(0x0000000E)]
+    HRESULT _stdcall ReprEdit([in] long id_Repr, [in] VARIANT id_ContrAgent, [in] VARIANT_BOOL isJur, [in] VARIANT AName, [in] VARIANT FirstName, [in] VARIANT MiddleName, [in] VARIANT LastName, [in] VARIANT Id_Currency, [in] VARIANT_BOOL Disabled, [in] VARIANT Addr, [in] VARIANT Descr, [in] long NeedSend, [out, retval] long * Param10 );
+    [id(0x0000000F)]
+    HRESULT _stdcall ContrAgentSetGrp([in] long id_ContrAgent, [in] VARIANT id_CAGroup, [out, retval] long * Param3 );
+    [id(0x00000011)]
+    HRESULT _stdcall Ctg_GoodsEdit([in] long id_Ctg, [in] long id_business, [in] VARIANT id_BaseCtg, [in] VARIANT AName, [in] VARIANT ShortName, [in] VARIANT DefPrice, [in] VARIANT Id_Currency, [in] VARIANT_BOOL Disabled, [out, retval] long * Param9 );
+    [id(0x00000012)]
+    HRESULT _stdcall CtgByID([in] long AType, [in] VARIANT ID, [out] VARIANT * AName, [out, retval] long * Param3 );
+    [id(0x00000010)]
+    HRESULT _stdcall Ctg_GoodsAdd([in] long id_business, [in] VARIANT id_BaseCtg, [in] VARIANT AName, [in] VARIANT ShortName, [in] VARIANT DefPrice, [in] VARIANT Id_Currency, [in] VARIANT_BOOL Disabled, [out, retval] long * Param9 );
+    [id(0x00000014)]
+    HRESULT _stdcall WareAdd([in] long AType, [in] VARIANT id_Ctg, [in] VARIANT AName, [in] VARIANT ShortName, [in] VARIANT BarCode, [in] VARIANT Price, [in] VARIANT Id_Currency, [in] VARIANT_BOOL Disabled, [in] VARIANT id_Measure, [out, retval] long * Param9 );
+    [id(0x00000016)]
+    HRESULT _stdcall WareEdit([in] long AType, [in] long AID, [in] VARIANT id_Ctg, [in] VARIANT AName, [in] VARIANT ShortName, [in] VARIANT BarCode, [in] VARIANT Price, [in] VARIANT Id_Currency, [in] VARIANT_BOOL Disabled, [in] VARIANT id_Measure, [out, retval] long * Param9 );
+    [id(0x00000017)]
+    HRESULT _stdcall BsnByID([in] VARIANT ID, [out] VARIANT * AName, [out, retval] long * Param3 );
+    [id(0x0000001C)]
+    HRESULT _stdcall LC_OP_EmptyAdd([in] long id_UserCreator, [in] VARIANT_BOOL OperTypeIn, [in] VARIANT id_DocType, [in] VARIANT Contract, [in] VARIANT OpComment, [in] long id_business, [in] VARIANT Imp_PayBasic, [in] VARIANT AccInv_PayAssignment, [out, retval] long * Param4 );
+    [id(0x00000021)]
+    HRESULT _stdcall LC_OP_EmptyEdit([in] long id_LC_Oper, [in] long id_UserCreator, [in] VARIANT id_DocType, [in] VARIANT Contract, [in] VARIANT OpComment, [in] long id_business, [in] VARIANT Imp_PayBasic, [in] VARIANT AccInv_PayAssignment, [out, retval] long * Param4 );
+    [id(0x0000001F)]
+    HRESULT _stdcall CA_CAWhouseAdd([in] long id_Repr, [in] VARIANT AName, [in] VARIANT Addr, [in] VARIANT Descr, [out, retval] long * Param5 );
+    [id(0x00000024)]
+    HRESULT _stdcall CA_CAWhouseEdit([in] long id_CAWhouse, [in] long id_Repr, [in] VARIANT AName, [in] VARIANT Addr, [in] VARIANT Descr, [out, retval] long * Param5 );
+    [id(0x00000026)]
+    HRESULT _stdcall CA_CAWhouseDel([in] long id_CAWhouse, [out, retval] long * Param2 );
+    [id(0x00000027)]
+    HRESULT _stdcall LC_OP_DEL([in] long id_LC_Oper, [out, retval] long * Param2 );
+    [id(0x00000015)]
+    HRESULT _stdcall SetUserForOper([in] VARIANT id_User, [in] long id_Oper, [out, retval] long * Param3 );
+    [id(0x00000018)]
+    HRESULT _stdcall OP_OperDel([in] long id_Oper, [out, retval] long * Param2 );
+    [id(0x0000001A)]
+    HRESULT _stdcall OP_OperSetCheckDate([in] long id_Oper, [in] VARIANT id_UserChecker, [out, retval] long * Param2 );
+    [id(0x00000023)]
+    HRESULT _stdcall LC_Acc_Add([in] VARIANT AName, [in] VARIANT id_Bsn, [in] VARIANT id_Group, [out, retval] long * Param2 );
+    [id(0x00000028)]
+    HRESULT _stdcall LC_Acc_Edit([in] long AID, [in] VARIANT AName, [in] VARIANT id_Group, [out, retval] long * Param2 );
+    [id(0x0000002C)]
+    HRESULT _stdcall LC_WH_Add([in] VARIANT AName, [in] VARIANT id_Bsn, [in] VARIANT id_Group, [out, retval] long * Param2 );
+    [id(0x0000002D)]
+    HRESULT _stdcall LC_WH_Edit([in] long AID, [in] VARIANT AName, [in] VARIANT id_Group, [out, retval] long * Param2 );
+    [id(0x0000002F)]
+    HRESULT _stdcall LC_EQ_Add([in] VARIANT AName, [in] VARIANT id_Bsn, [in] VARIANT id_Group, [out, retval] long * Param2 );
+    [id(0x00000031)]
+    HRESULT _stdcall LC_EQ_Edit([in] long AID, [in] VARIANT AName, [in] VARIANT id_Group, [out, retval] long * Param2 );
+    [id(0x00000032)]
+    HRESULT _stdcall LC_MN_Add([in] VARIANT AName, [in] VARIANT id_Bsn, [in] VARIANT id_Group, [out, retval] long * Param2 );
+    [id(0x00000033)]
+    HRESULT _stdcall LC_MN_Edit([in] long AID, [in] VARIANT AName, [in] VARIANT id_Group, [out, retval] long * Param2 );
+    [id(0x0000002A)]
+    HRESULT _stdcall CH_Checked([in] long AID, [in] long ObjID, [out, retval] long * Param3 );
+    [id(0x0000002B)]
+    HRESULT _stdcall OP_OperDelCheckDate([in] long id_Oper, [out, retval] long * Param2 );
+    [id(0x0000002E)]
+    HRESULT _stdcall UNSel_AccBsn([in] VARIANT Param1, [in] VARIANT * id_Bsn, [in] VARIANT * id_Group, [out, retval] long * RetVal );
+    [id(0x00000030)]
+    HRESULT _stdcall UNSel_WHBsn([in] VARIANT Param1, [in] VARIANT * id_Bsn, [in] VARIANT * id_Group, [out, retval] long * Param2 );
+    [id(0x00000034)]
+    HRESULT _stdcall UNSel_ManufBsn([in] VARIANT Param1, [in] VARIANT * id_Bsn, [in] VARIANT * id_Group, [out, retval] long * Param2 );
+    [id(0x00000035)]
+    HRESULT _stdcall UNSel_CABsn([in] long Param1, [out] VARIANT_BOOL * isOwn, [out] VARIANT * id_CAGroup, [out, retval] long * Param3 );
+    [id(0x00000036)]
+    HRESULT _stdcall UNSel_ReprBsn_v2([in] long Param1, [in] VARIANT_BOOL * isOwn, [in] VARIANT * id_CAGroup, [in] VARIANT * id_Ca, [in] VARIANT * id_Repr_Group, [in] VARIANT * id_Bsn, [out, retval] long * Param3 );
+    [id(0x0000003A)]
+    HRESULT _stdcall PL_Ctg_GoodsDel([in] long Param1, [out, retval] long * Param2 );
+    [id(0x0000003E)]
+    HRESULT _stdcall PL_GoodsDel([in] long Param1, [out, retval] long * Param2 );
+    [id(0x00000041)]
+    HRESULT _stdcall CA_ContrAgentDel([in] long Param1, [out, retval] long * Param2 );
+    [id(0x00000042)]
+    HRESULT _stdcall CA_ReprDel([in] long Param1, [out, retval] long * Param2 );
+    [id(0x00000043)]
+    HRESULT _stdcall UNSel_PL_GoodsInf([in] long Param1, [out, retval] long * Param2 );
+    [id(0x00000046)]
+    HRESULT _stdcall OP_OperSetOperState([in] long id_Oper, [in] long OperState, [out, retval] long * Param3 );
+    [id(0x00000047)]
+    HRESULT _stdcall BsnNumByID([in] long AID, [in, out] VARIANT * Param2, [out, retval] long * Param3 );
+    [id(0x00000048)]
+    HRESULT _stdcall CheckGoods([in] VARIANT Param1, [out, retval] long * Param2 );
+    [id(0x0000004D)]
+    HRESULT _stdcall PL_GetDefsGoods([in] long AID_Ctg, [out] VARIANT * Price, [out] VARIANT * ID_Cur, [out, retval] long * RetVal );
+    [id(0x00000053)]
+    HRESULT _stdcall PL_GetDefPriceGoods([in] long AID_Ctg, [in] VARIANT id_Warehouse, [out] VARIANT * Price, [out] VARIANT * ID_Cur, [out] double * TotalAmount, [out, retval] long * RetVal );
+    [id(0x0000004C)]
+    HRESULT _stdcall OP_OperGetEditID([in] long id_OperParent, [out, retval] long * Param2 );
+    [id(0x0000004E)]
+    HRESULT _stdcall OP_DoCancel([in] long id_Oper, [out, retval] long * Param2 );
+    [id(0x0000004F)]
+    HRESULT _stdcall OP_DoOk([in] long id_Oper, [out, retval] long * Param2 );
+    [id(0x00000058)]
+    HRESULT _stdcall LNK_Acc([in] long id_Old, [in] long id_New, [out, retval] VARIANT_BOOL * Param3 );
+    [id(0x0000005C)]
+    HRESULT _stdcall LNK_Warehouse([in] long id_Old, [in] long id_New, [out, retval] VARIANT_BOOL * Param3 );
+    [id(0x0000005E)]
+    HRESULT _stdcall LNK_Repr([in] long id_Old, [in] long id_New, [out, retval] VARIANT_BOOL * Param3 );
+    [id(0x0000005F)]
+    HRESULT _stdcall LNK_Manufact([in] long id_Old, [in] long id_New, [out, retval] VARIANT_BOOL * Param3 );
+    [id(0x00000064)]
+    HRESULT _stdcall LNK_Goods([in] long id_Old, [in] long id_New, [out, retval] VARIANT_BOOL * Param3 );
+    [id(0x00000056)]
+    HRESULT _stdcall OP_BuffAdd([in] VARIANT AName, [out, retval] long * RetVal );
+    [id(0x0000005B)]
+    HRESULT _stdcall OP_BuffDel([in] long id_Buff, [out, retval] long * RetVal );
+    [id(0x0000005D)]
+    HRESULT _stdcall OP_BuffEdit([in] long id_Buff, [in] VARIANT AName, [out, retval] long * RetVal );
+    [id(0x00000060)]
+    HRESULT _stdcall PL_UN_WareCtgGetProp([in] long id_Ctg, [in] long ID_TYPE, [out, retval] VARIANT * AName );
+    [id(0x00000061)]
+    HRESULT _stdcall CA_CAGroupGetProp([in] VARIANT id_CAGroup, [out, retval] VARIANT * Param2 );
+    [id(0x00000078)]
+    HRESULT _stdcall CA_CAGetProp([in] VARIANT id_ContrAgent, [out, retval] VARIANT * Param2 );
+    [id(0x00000063)]
+    HRESULT _stdcall DD_DayOpen([in] long id_business, [in] DATE VirtDate, [out, retval] long * RetVal );
+    [id(0x00000067)]
+    HRESULT _stdcall DD_DayClose([in] long id_business, [out, retval] long * RetVal );
+    [id(0x00000069)]
+    HRESULT _stdcall DD_DayGetProp([in] long id_business, [out, retval] VARIANT * RetVal );
+    [id(0x00000065)]
+    HRESULT _stdcall PL_GetAccSum([in] long id_Acc, [out] double * TotalSum, [out, retval] long * RetVal );
+    [id(0x0000006A)]
+    HRESULT _stdcall OP_FuncDistribAdd([in] VARIANT AName, [in] long id_Bsn, [out, retval] long * Param2 );
+    [id(0x0000006B)]
+    HRESULT _stdcall OP_FuncDistribEdit([in] long id_FuncDistrib, [in] VARIANT AName, [out, retval] long * Param2 );
+    [id(0x0000006C)]
+    HRESULT _stdcall OP_FuncDistribDel([in] long id_FuncDistrib, [out, retval] long * Param2 );
+    [id(0x0000006E)]
+    HRESULT _stdcall OP_FormalDistribAdd([in] VARIANT AName, [in] long id_Bsn, [out, retval] long * Param2 );
+    [id(0x00000070)]
+    HRESULT _stdcall OP_FormalDistribEdit([in] long id_FormalDistrib, [in] VARIANT AName, [out, retval] long * Param2 );
+    [id(0x00000073)]
+    HRESULT _stdcall OP_FormalDistribDel([in] long id_FormalDistrib, [out, retval] long * Param2 );
+    [id(0x0000006D)]
+    HRESULT _stdcall GetWH([in] long ID, [in] VARIANT * AName, [in] VARIANT * ABsnName, [in] VARIANT * id_business, [out, retval] long * RetVal );
+    [id(0x0000006F)]
+    HRESULT _stdcall GetOperNum([in] long id_Oper, [out, retval] VARIANT * Param2 );
+    [id(0x00000071)]
+    HRESULT _stdcall Rights_GetUserRights([in] long id_Func, [in] VARIANT id_business, [in] long id_User, [out, retval] long * RetVal );
+    [id(0x00000072)]
+    HRESULT _stdcall Rights_GetFuncName([in] long id_Func, [out, retval] VARIANT * RetVal );
+    [id(0x00000074)]
+    HRESULT _stdcall OP_Oper_ExtDataNamesEdit([in] long id_Oper_ExtDataNames, [in] long id_business, [in] long AType, [in] long NumPrm, [in] VARIANT ParName, [in] VARIANT_BOOL AVisible, [in] VARIANT_BOOL NeedSend, [in] VARIANT OrdNum, [out, retval] long * RetVal );
+    [id(0x00000075)]
+    HRESULT _stdcall UN_Check_Ctg_Ware([in] long WareType, [in] long id_business, [in] VARIANT id_Ctg, [in] VARIANT AName, [in] VARIANT id_real, [out, retval] long * RetVal );
+    [id(0x00000076)]
+    HRESULT _stdcall UN_Check_Ware([in] long WareType, [in] VARIANT id_Ctg, [in] VARIANT AName, [in] VARIANT id_real, [out, retval] long * RetVal );
+    [id(0x00000077)]
+    HRESULT _stdcall UN_Check_CAGroup([in] long id_business, [in] VARIANT AName, [in] VARIANT id_real, [out, retval] long * RetVal );
+    [id(0x00000079)]
+    HRESULT _stdcall UN_Check_CA_ContrAgent([in] long id_business, [in] VARIANT AName, [in] VARIANT id_real, [out, retval] long * RetVal );
+    [id(0x0000007A)]
+    HRESULT _stdcall UN_Check_CA_Repr([in] long id_ContrAgent, [in] VARIANT AName, [in] VARIANT id_real, [out, retval] long * RetVal );
+    [id(0x0000007C)]
+    HRESULT _stdcall UN_Sel_PL_GoodsCtg([in] long AID, [out, retval] long * RetVal );
+    [id(0x0000007F)]
+    HRESULT _stdcall LC_OP_OperSetCheckDate([in] long id_LC_Oper, [out, retval] long * RetVal );
+    [id(0x00000080)]
+    HRESULT _stdcall LC_OP_OperDelCheckDate([in] long id_LC_Oper, [out, retval] long * RetVal );
+    [id(0x00000081)]
+    HRESULT _stdcall LC_SetBaseName([in] VARIANT AName );
+    [id(0x00000082)]
+    HRESULT _stdcall CH_Deleted([in] long AID, [in] long AObjID, [out, retval] long * RetVal );
+    [id(0x00000083)]
+    HRESULT _stdcall RP_WHStateDates_Get([out, retval] VARIANT * RatVal );
+    [id(0x00000084)]
+    HRESULT _stdcall xxx_Group_Check_v2([in] long ObjID, [in] long id_business, [in] VARIANT AName, [in] VARIANT id_real, [out, retval] long * RetVal );
+    [id(0x00000085)]
+    HRESULT _stdcall xxx_Group_Add_v2([in] long ObjID, [in] long id_business, [in] VARIANT AName, [in] VARIANT_BOOL ShowInRoot, [out, retval] long * RetVal );
+    [id(0x00000087)]
+    HRESULT _stdcall xxx_Group_Edit_v2([in] long ObjID, [in] long id_Group, [in] VARIANT AName, [in] VARIANT_BOOL ShowInRoot, [out, retval] long * RetVal );
+    [id(0x00000086)]
+    HRESULT _stdcall xxx_Group_Del_v2([in] long ObjID, [in] long id_Group, [out, retval] long * RetVal );
+    [id(0x00000088)]
+    HRESULT _stdcall xxx_SetGrp([in] long ObjID, [in] long AID, [in] VARIANT id_Group, [out, retval] long * RetVal );
+    [id(0x00000089)]
+    HRESULT _stdcall Acc_Del([in] long id_Acc, [out, retval] long * RetVal );
+    [id(0x0000008B)]
+    HRESULT _stdcall Acc_Edit([in] VARIANT id_Acc, [in] VARIANT AccName, [in] VARIANT Bank, [in] VARIANT id_business, [in] VARIANT PrsnAccName, [in] VARIANT CorrAccName, [in] VARIANT Inn, [in] VARIANT BIK, [in] VARIANT Disabled, [in] VARIANT_BOOL NeedSend, [in] VARIANT id_Group, [in] VARIANT_BOOL ShowInRoot, [out, retval] long * RetVal );
+    [id(0x0000008A)]
+    HRESULT _stdcall MN_Del([in] long id_MN, [out, retval] long * RetVal );
+    [id(0x0000008E)]
+    HRESULT _stdcall MN_Edit([in] VARIANT id_Manufact, [in] VARIANT ManufactName, [in] VARIANT id_business, [in] VARIANT Addr, [in] VARIANT Disabled, [in] VARIANT_BOOL NeedSend, [in] VARIANT id_Group, [in] VARIANT_BOOL ShowInRoot, [out, retval] long * RetVal );
+    [id(0x0000008D)]
+    HRESULT _stdcall WH_Del([in] long id_WH, [out, retval] long * RetVal );
+    [id(0x00000090)]
+    HRESULT _stdcall WH_Edit([in] VARIANT id_Warehouse, [in] VARIANT AName, [in] VARIANT id_business, [in] VARIANT Addr, [in] VARIANT Disabled, [in] VARIANT_BOOL NeedSend, [in] VARIANT id_Group, [in] VARIANT_BOOL ShowInRoot, [out, retval] long * RetVal );
+    [id(0x00000093)]
+    HRESULT _stdcall UNSel_ReprBsn([in] long Param1, [in] VARIANT_BOOL * isOwn, [in] VARIANT * id_CAGroup, [in] VARIANT * id_Ca, [out, retval] long * Param3 );
+    [id(0x00000097)]
+    HRESULT _stdcall ReprAdd_LC([in] VARIANT_BOOL isJur, [in] VARIANT AName, [in] VARIANT FirstName, [in] VARIANT MiddleName, [in] VARIANT LastName, [in] VARIANT Id_Currency, [in] VARIANT_BOOL Disabled, [in] VARIANT Addr, [in] VARIANT Descr, [in] VARIANT id_Bsn_ex, [in] VARIANT id_Group, [out, retval] long * Param10 );
+    [id(0x00000099)]
+    HRESULT _stdcall ReprEdit_LC([in] long id_Repr, [in] VARIANT_BOOL isJur, [in] VARIANT AName, [in] VARIANT FirstName, [in] VARIANT MiddleName, [in] VARIANT LastName, [in] VARIANT Id_Currency, [in] VARIANT_BOOL Disabled, [in] VARIANT Addr, [in] VARIANT Descr, [in] VARIANT id_Group, [out, retval] long * Param10 );
+    [id(0x0000008C)]
+    HRESULT _stdcall GetAccName([in] long id_Acc, [out, retval] VARIANT * RetVal );
+    [id(0x0000008F)]
+    HRESULT _stdcall GetAccGroupName([in] long id_Acc_Group, [out, retval] VARIANT * RetVal );
+    [id(0x00000091)]
+    HRESULT _stdcall GetWHName([in] long id_WH, [out, retval] VARIANT * RetVal );
+    [id(0x00000092)]
+    HRESULT _stdcall GetWHGroupName([in] long id_WHGroup, [out, retval] VARIANT * RetVal );
+    [id(0x00000094)]
+    HRESULT _stdcall GetCAName([in] long id_Ca, [out, retval] VARIANT * Param2 );
+    [id(0x00000095)]
+    HRESULT _stdcall GetCAGroupName([in] long id_CAGroup, [out, retval] VARIANT * Param2 );
+    [id(0x00000096)]
+    HRESULT _stdcall DD_MaxDay([in] long id_business, [out, retval] VARIANT * Param2 );
+    [id(0x0000009B)]
+    long _stdcall OP_OperAdd_v2([in] long OperVid, [in] VARIANT id_business, [in] VARIANT_BOOL Correct, [in] VARIANT_BOOL OperTypeIn, [in] VARIANT Id_CurrencyOper, [in] VARIANT PriceFinOper, [in] double RateOper, [in] VARIANT Id_CurrencySys, [in] VARIANT SummSysFin, [in] VARIANT RateSys, [in] VARIANT id_Repr, [in] VARIANT id_Acc, [in] VARIANT id_Acc_Ext, [in] VARIANT id_Warehouse, [in] VARIANT id_Warehouse_Ext, [in] VARIANT id_Manufact, [in] VARIANT id_Manufact_Ext, [in] VARIANT id_FormalDistrib, [in] VARIANT id_FuncDistrib, [in] VARIANT Koeff, [in] VARIANT Id_CurrencyInv, [in] VARIANT id_OperParent, [in] long OperState, [in] VARIANT id_UserCreator, [in] VARIANT id_DocType, [in] VARIANT Imp_PayBasic, [in] VARIANT AccInv_PayAssignment, [in] VARIANT Contract, [in] VARIANT OpComment, [in] VARIANT Dig1, [in] VARIANT Dig2, [in] VARIANT Dig3, [in] VARIANT Dig4, [in] VARIANT Dig5, [in] VARIANT Dig6, [in] VARIANT Dig7, [in] VARIANT Dig8, [in] VARIANT Dig9, [in] VARIANT Dig10, [in] VARIANT Dig11, [in] VARIANT Dig12, [
+    [id(0x0000009C)]
+    long _stdcall OP_OperEdit_v2([in] long id_Oper, [in] long OperVid, [in] VARIANT id_business, [in] VARIANT_BOOL Correct, [in] VARIANT_BOOL OperTypeIn, [in] VARIANT Id_CurrencyOper, [in] VARIANT PriceFinOper, [in] double RateOper, [in] VARIANT Id_CurrencySys, [in] VARIANT SummSysFin, [in] VARIANT RateSys, [in] VARIANT id_Repr, [in] VARIANT id_Acc, [in] VARIANT id_Acc_Ext, [in] VARIANT id_Warehouse, [in] VARIANT id_Warehouse_Ext, [in] VARIANT id_Manufact, [in] VARIANT id_Manufact_Ext, [in] VARIANT id_FormalDistrib, [in] VARIANT id_FuncDistrib, [in] VARIANT Koeff, [in] VARIANT Id_CurrencyInv, [in] VARIANT id_OperParent, [in] long OperState, [in] VARIANT id_UserCreator, [in] VARIANT id_DocType, [in] VARIANT Imp_PayBasic, [in] VARIANT AccInv_PayAssignment, [in] VARIANT Contract, [in] VARIANT OpComment, [in] VARIANT Dig1, [in] VARIANT Dig2, [in] VARIANT Dig3, [in] VARIANT Dig4, [in] VARIANT Dig5, [in] VARIANT Dig6, [in] VARIANT Dig7, [in] VARIANT Dig8, [in] VARIANT Dig9, [in] VARIANT Dig10, [in] VARIANT Dig11, [
+    [id(0x000000A0)]
+    HRESULT _stdcall OP_OperSetOperState_v2([in] long id_Oper, [in] long OperState, [out, retval] long * Param3 );
+    [id(0x000000A3)]
+    HRESULT _stdcall OP_OperDelCheckDate_v2([in] long id_Oper, [out, retval] long * Param2 );
+    [id(0x00000683)]
+    HRESULT _stdcall OP_OperSetCheckDate_v2([in] long id_Oper, [in] VARIANT id_UserChecker, [out, retval] long * Param2 );
+    [id(0x00000098)]
+    HRESULT _stdcall PL_WareMeasureGet([in] VARIANT id_Goods, [in] VARIANT * id_Measure, [in] VARIANT * ShortName, [out, retval] VARIANT * RetVal );
+    [id(0x0000009A)]
+    HRESULT _stdcall GetBsnCur([in] long id_Bsn, [out, retval] long * RetVal );
+    [id(0x0000009D)]
+    HRESULT _stdcall UN_ShowInRoot([in] VARIANT id_Acc, [in] VARIANT id_Acc_Group, [in] VARIANT id_Warehouse, [in] VARIANT id_Warehouse_Group, [in] VARIANT id_ContrAgent, [in] VARIANT id_CAGroup, [in] VARIANT id_Manufact, [in] VARIANT id_Manufact_Group, [in] VARIANT_BOOL ShowInRoot, [out, retval] long * RetVal );
+    [id(0x0000009E)]
+    HRESULT _stdcall GetWateCtg([in] VARIANT id_Goods, [out, retval] VARIANT * RetVal );
+    [id(0x0000009F)]
+    HRESULT _stdcall DCh_Oper([in] long id_business, [in] long OperVid, [in] VARIANT id_UserCreator, [in] VARIANT DateLocal, [in] VARIANT_BOOL Correct, [in] VARIANT_BOOL OperTypeIn, [in] VARIANT CurrencyOperName, [in] VARIANT PriceFinOper, [in] VARIANT CurrencySysName, [in] VARIANT SummSysFin, [in] VARIANT AccName, [in] VARIANT AccName_Ext, [in] VARIANT WarehouseName, [in] VARIANT WarehouseName_Ext, [in] VARIANT ManufactName, [in] VARIANT ManufactName_Ext, [in] VARIANT ReprName, [in] VARIANT CAName, [in] long Koeff, [in] VARIANT FormalDistribName, [in] VARIANT FuncDistribName, [in] VARIANT Imp_PayBasic, [in] VARIANT AccInv_PayAssignment, [in] VARIANT OpComment, [in] VARIANT Contract, [in] VARIANT ReprName_Ex, [in] VARIANT id_Replicator, [in] VARIANT id_LC_Oper, [out, retval] long * Param27 );
+    [id(0x000000A1)]
+    HRESULT _stdcall DCh_OperWare([in] long id_Oper, [in] VARIANT CtgName, [in] VARIANT GoodsName, [in] VARIANT MeasureName, [in] double AmountOper, [in] VARIANT PriceOper, [in] VARIANT SummSys, [out, retval] long * RetVal );
+    [id(0x000000A2)]
+    HRESULT _stdcall OP_BuffAddItem([in] long id_Buff, [in] long id_Oper, [out, retval] long * RetVal );
+    [id(0x000000A4)]
+    HRESULT _stdcall OP_OperWareAdd_BackToCA([in] long id_Oper, [in] VARIANT id_Goods, [in] VARIANT id_Measure, [in] VARIANT Amount, [in] VARIANT PriceOper, [in] VARIANT SummSys, [in] long OupByInv, [out, retval] long * RetVal );
+    [id(0x000000AB)]
+    HRESULT _stdcall PL_WareNameGet([in] VARIANT id_Goods, [in] VARIANT * AName, [in] VARIANT * ShortName, [out, retval] long * RetVal );
+    [id(0x000000A9)]
+    HRESULT _stdcall LC_OP_OperAdd_v2([in] long OperVid, [in] VARIANT id_business, [in] VARIANT_BOOL Correct, [in] VARIANT_BOOL OperTypeIn, [in] VARIANT Id_CurrencyOper, [in] VARIANT PriceFinOper, [in] VARIANT Id_CurrencySys, [in] VARIANT SummSysFin, [in] VARIANT id_Acc, [in] VARIANT id_Acc_Ext, [in] VARIANT id_Warehouse, [in] VARIANT id_Warehouse_Ext, [in] VARIANT id_Manufact, [in] VARIANT id_Manufact_Ext, [in] VARIANT id_Repr, [in] VARIANT id_UserCreator, [in] VARIANT id_LC_Oper_Ext, [in] VARIANT id_DocType, [in] VARIANT Imp_PayBasic, [in] VARIANT AccInv_PayAssignment, [in] VARIANT Contract, [in] VARIANT OpComment, [in] long Koeff, [in] VARIANT Dig1, [in] VARIANT Dig2, [in] VARIANT Dig3, [in] VARIANT Dig4, [in] VARIANT Dig5, [in] VARIANT Dig6, [in] VARIANT Dig7, [in] VARIANT Dig8, [in] VARIANT Dig9, [in] VARIANT Dig10, [in] VARIANT Dig11, [in] VARIANT Dig12, [in] VARIANT Dig13, [in] VARIANT Dig14, [in] VARIANT Dig15, [in] VARIANT Str1, [in] VARIANT Str2, [in] VARIANT Str3, [in] VARIANT Str4, [in] VARIANT St
+    [id(0x000000B2)]
+    HRESULT _stdcall DCh_Oper_LC([in] long id_business, [in] long OperVid, [in] VARIANT id_UserCreator, [in] VARIANT_BOOL Correct, [in] VARIANT_BOOL OperTypeIn, [in] VARIANT CurrencyOperName, [in] VARIANT PriceFinOper, [in] VARIANT CurrencySysName, [in] VARIANT SummSysFin, [in] VARIANT AccName, [in] VARIANT AccName_Ext, [in] VARIANT WarehouseName, [in] VARIANT WarehouseName_Ext, [in] VARIANT ManufactName, [in] VARIANT ManufactName_Ext, [in] VARIANT ReprName, [in] VARIANT Imp_PayBasic, [in] VARIANT AccInv_PayAssignment, [in] VARIANT OpComment, [in] VARIANT Contract, [in] long Koeff, [in] VARIANT FormalDistribName, [in] VARIANT FuncDistribName, [out, retval] long * Param27 );
+    [id(0x000000B1)]
+    HRESULT _stdcall DCh_OperWare_LC([in] long id_LC_Oper, [in] VARIANT CtgName, [in] VARIANT GoodsName, [in] VARIANT MeasureName, [in] double AmountOper, [in] VARIANT PriceOper, [in] VARIANT SummSys, [out, retval] long * RetVal );
+    [id(0x000000A5)]
+    HRESULT _stdcall ExpSetID([in] long id_Oper, [in] long id_LC_Oper, [out, retval] long * RetVal );
+    [id(0x000000AC)]
+    HRESULT _stdcall OP_EmptyAdd([in] long id_UserCreator, [in] VARIANT_BOOL OperTypeIn, [in] VARIANT id_DocType, [in] VARIANT Contract, [in] VARIANT OpComment, [in] long id_business, [in] VARIANT Imp_PayBasic, [in] VARIANT AccInv_PayAssignment, [out, retval] long * Param4 );
+    [id(0x000000A8)]
+    HRESULT _stdcall OP_EmptyEdit([in] long id_Oper, [in] long id_UserCreator, [in] VARIANT id_DocType, [in] VARIANT Contract, [in] VARIANT OpComment, [in] long id_business, [in] VARIANT Imp_PayBasic, [in] VARIANT AccInv_PayAssignment, [out, retval] long * Param4 );
+    [id(0x000000AF)]
+    HRESULT _stdcall SetUserDetail_2([in] VARIANT Act, [in] VARIANT ID, [in] VARIANT FirstName, [in] VARIANT MiddleName, [in] VARIANT LastName, [in] VARIANT Login, [in] VARIANT Password, [in] VARIANT PspSeries, [in] VARIANT PspNumber, [in] VARIANT PspPlace, [in] VARIANT Pspdate, [in] VARIANT PspAddr, [in] VARIANT AddrReal, [in] VARIANT Phones, [in] VARIANT Emails, [in] VARIANT OrgPost, [in] VARIANT Disabled, [in] VARIANT_BOOL isRelp, [out, retval] long * RetVal );
+    [id(0x000000B3)]
+    HRESULT _stdcall SetUserGroups([in] VARIANT ID, [in] VARIANT Ids );
+    [id(0x000000B6)]
+    HRESULT _stdcall SetGroupDetail([in] VARIANT Act, [in] VARIANT ID, [in] VARIANT GroupName, [in] VARIANT Disabled, [out, retval] long * RetVal );
+    [id(0x000000B9)]
+    HRESULT _stdcall SetMeasureDetail([in] VARIANT Act, [in] VARIANT ID, [in] VARIANT MeasureName, [in] VARIANT ShortName, [in] VARIANT id_BaseMeasure, [in] VARIANT id_business, [in] VARIANT Koef, [in] VARIANT Disabled, [out, retval] long * RetVal );
+    [id(0x000000BB)]
+    HRESULT _stdcall SetMeasureBusiness([in] VARIANT ID, [in] VARIANT Ids );
+    [id(0x000000BD)]
+    HRESULT _stdcall SetGroupDetail1([in] VARIANT Act, [in] VARIANT ID, [in] VARIANT GroupName, [in] VARIANT Disabled, [out, retval] long * RetVal );
+    [id(0x000000BF)]
+    HRESULT _stdcall SetBusinessDetail([in] VARIANT Act, [in] VARIANT ID, [in] VARIANT BusinessName, [in] VARIANT ShortName, [in] VARIANT Id_Currency, [in] VARIANT Num, [in] VARIANT Disabled, [out, retval] long * RetVal );
+    [id(0x000000C2)]
+    HRESULT _stdcall SetReplicatorDetail([in] VARIANT Act, [in] VARIANT ID, [in] VARIANT ReplicatorName, [in] VARIANT ShortName, [in] VARIANT Login, [in] VARIANT Password, [in] VARIANT DelPeriod, [in] VARIANT Disabled, [out, retval] long * RetVal );
+    [id(0x000000C5)]
+    HRESULT _stdcall SetReplBusiness([in] VARIANT ID, [in] VARIANT Ids );
+    [id(0x000000A6)]
+    HRESULT _stdcall SnglObj_Acc([in] long id_User, [out] VARIANT * ObjName, [out] VARIANT * ObjID, [out] VARIANT * BsnName, [out] VARIANT * id_business, [out, retval] long * RetVal );
+    [id(0x000000A7)]
+    HRESULT _stdcall SnglObj_MN([in] long id_User, [out] VARIANT * ObjName, [out] VARIANT * ObjID, [out] VARIANT * BsnName, [out] VARIANT * id_business, [out, retval] long * RetVal );
+    [id(0x000000AD)]
+    HRESULT _stdcall SnglObj_wh([in] long id_User, [out] VARIANT * ObjName, [out] VARIANT * ObjID, [out] VARIANT * BsnName, [out] VARIANT * id_business, [out, retval] long * RetVal );
+    [id(0x000000AE)]
+    HRESULT _stdcall SnglObj_CA([in] long id_User, [out] VARIANT * ObjName, [out] VARIANT * ObjID, [out] VARIANT * BsnName, [out] VARIANT * id_business, [out, retval] long * RetVal );
+    [id(0x000000B0)]
+    HRESULT _stdcall MSG_Add([in] VARIANT Body, [in] long id_User, [in] VARIANT_BOOL WasRead, [in] VARIANT DateClose, [in] VARIANT RepBody, [in] VARIANT id_State, [out, retval] long * RetVal );
+    [id(0x000000B7)]
+    HRESULT _stdcall MSG_Edit([in] long id_Msg, [in] VARIANT Body, [in] long id_User, [in] VARIANT_BOOL WasRead, [in] VARIANT DateClose, [in] VARIANT RepBody, [in] VARIANT id_State, [out, retval] long * RetVal );
+    [id(0x000000B4)]
+    HRESULT _stdcall MSG_SetClosed([in] long id_Msg, [in] VARIANT DateClose, [out, retval] long * RetVal );
+    [id(0x000000B5)]
+    HRESULT _stdcall MSG_SetWasRead([in] long id_Msg, [in] VARIANT_BOOL WasRead, [out, retval] long * RetVal );
+    [id(0x000000B8)]
+    HRESULT _stdcall OP_OperExtDataEdit_v2([in] long id_Oper, [in] long AType, [in] long NumPrm, [in] VARIANT DigVal, [in] VARIANT StrVal, [in] VARIANT DateVal, [out, retval] long * RetVal );
+    [id(0x000000BC)]
+    HRESULT _stdcall LC_OP_OperEdit_v2([in] long id_LC_Oper, [in] long OperVid, [in] VARIANT id_business, [in] VARIANT_BOOL Correct, [in] VARIANT_BOOL OperTypeIn, [in] VARIANT Id_CurrencyOper, [in] VARIANT PriceFinOper, [in] VARIANT Id_CurrencySys, [in] VARIANT SummSysFin, [in] VARIANT id_Acc, [in] VARIANT id_Acc_Ext, [in] VARIANT id_Warehouse, [in] VARIANT id_Warehouse_Ext, [in] VARIANT id_Manufact, [in] VARIANT id_Manufact_Ext, [in] VARIANT id_Repr, [in] VARIANT id_UserCreator, [in] VARIANT id_LC_Oper_Ext, [in] VARIANT id_DocType, [in] VARIANT Imp_PayBasic, [in] VARIANT AccInv_PayAssignment, [in] VARIANT Contract, [in] VARIANT OpComment, [in] long Koeff, [in] VARIANT Dig1, [in] VARIANT Dig2, [in] VARIANT Dig3, [in] VARIANT Dig4, [in] VARIANT Dig5, [in] VARIANT Dig6, [in] VARIANT Dig7, [in] VARIANT Dig8, [in] VARIANT Dig9, [in] VARIANT Dig10, [in] VARIANT Dig11, [in] VARIANT Dig12, [in] VARIANT Dig13, [in] VARIANT Dig14, [in] VARIANT Dig15, [in] VARIANT Str1, [in] VARIANT Str2, [in] VARIANT Str3, [in] VARIAN
+    [id(0x000000BE)]
+    HRESULT _stdcall Crn_URLAdd([in] VARIANT AName, [in] VARIANT URL, [in] long UseTable, [in] long ColName, [in] long ColISO, [in] long ColCode, [in] long ColRate, [in] long ColPieces, [out, retval] long * Param9 );
+    [id(0x000000C8)]
+    HRESULT _stdcall Crn_URLEdit([in] long ID, [in] VARIANT AName, [in] VARIANT URL, [in] long UseTable, [in] long ColName, [in] long ColISO, [in] long ColCode, [in] long ColRate, [in] long ColPieces, [out, retval] long * Param9 );
+    [id(0x000000D2)]
+    HRESULT _stdcall CurrencyEditRate([in] long Id_Currency, [in] double Rate, [out, retval] long * Param12 );
+    [id(0x000000D4)]
+    HRESULT _stdcall CurrencyAdd_2([in] VARIANT AName, [in] VARIANT ShortName, [in] VARIANT ISOCode, [in] VARIANT NumberCode, [in] VARIANT_BOOL FastAccess, [in] long AValue, [in] VARIANT Rate, [in] VARIANT_BOOL AvForPay, [in] VARIANT Id_URL, [in] long id_Bsn, [out, retval] long * Param12 );
+    [id(0x000000D5)]
+    HRESULT _stdcall CurrencyEdit_2([in] long Id_Currency, [in] VARIANT AName, [in] VARIANT ShortName, [in] VARIANT ISOCode, [in] VARIANT NumberCode, [in] VARIANT_BOOL FastAccess, [in] long AValue, [in] VARIANT Rate, [in] VARIANT_BOOL AvForPay, [in] VARIANT Id_URL, [in] long id_Bsn, [out, retval] long * Param12 );
+    [id(0x000000D6)]
+    HRESULT _stdcall SetCurid_Bsn([in] long Id_Currency, [in] long id_Bsn, [out, retval] long * Param3 );
+    [id(0x000000DA)]
+    long _stdcall AP_OperEditNAdd([in] long id_AP_Oper, [in] VARIANT OperVid, [in] VARIANT id_Replicator, [in] VARIANT id_UserCreator, [in] VARIANT id_UserChecker, [in] VARIANT id_business, [in] VARIANT Correct, [in] VARIANT OperTypeIn, [in] VARIANT id_Acc, [in] VARIANT id_Warehouse, [in] VARIANT id_Manufact, [in] VARIANT id_Repr, [in] VARIANT id_ContrAgent, [in] VARIANT id_Acc_Ext, [in] VARIANT id_Warehouse_Ext, [in] VARIANT id_Manufact_Ext, [in] VARIANT Koeff, [in] VARIANT id_FormalDistrib, [in] VARIANT id_FuncDistrib, [in] VARIANT Imp_PayBasic, [in] VARIANT AccInv_PayAssignment, [in] VARIANT Contract, [in] VARIANT OpComment, [in] VARIANT Dig1, [in] VARIANT Dig2, [in] VARIANT Dig3, [in] VARIANT Dig4, [in] VARIANT Dig5, [in] VARIANT Dig6, [in] VARIANT Dig7, [in] VARIANT Dig8, [in] VARIANT Dig9, [in] VARIANT Dig10, [in] VARIANT Dig11, [in] VARIANT Dig12, [in] VARIANT Dig13, [in] VARIANT Dig14, [in] VARIANT Dig15, [in] VARIANT Str1, [in] VARIANT Str2, [in] VARIANT Str3, [in] VARIANT Str4, [in] VARIANT Str5, [i
+  };
+
+  [
+    uuid(5F4D097E-5296-4553-813D-385D363107E8), 
+    version(1.0), 
+    helpstring("Dic Object")
+  ]
+  coclass Dic
+  {
+    [default] interface IDic;
+  };
+
+}; 
