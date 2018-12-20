@@ -5,3 +5,5 @@ web.config
 *.~*
 *.dcu
 *.ini
+*.bak
+*.bkp
